@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import styles from "./App.module.css";
+import MapReact from "./components/MapReact";
+import { Tooltip } from "react-tooltip";
+import SideBar from "./components/Sidebar";
+import "react-tooltip/dist/react-tooltip.css";
 
 function App() {
+  const [content, setContent] = useState("");
+  const [countryInfo, setCountryInfo] = useState({ name: "" });
+
   return (
-    <div className="App">
+    <div className={styles.app}>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h2>Welcome to Tiktok Global</h2>
       </header>
+      <main className={styles.maincontainer}>
+        <div
+          className={styles.mapcontainer}
+          id="my-anchor-element"
+          data-tooltip-float={true}
+        >
+          <MapReact
+            setTooltipContent={setContent}
+            onClickedCountry={setCountryInfo}
+          />
+          <Tooltip anchorSelect="#my-anchor-element" content={content} />
+        </div>
+        <SideBar {...countryInfo} />
+      </main>
     </div>
   );
 }

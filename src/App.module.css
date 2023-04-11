@@ -1,0 +1,22 @@
+.app {
+  text-align: center;
+}
+.maincontainer {
+  display: flex;
+  flex-direction: row;
+}
+.mapcontainer{
+  border: 1px solid;
+  width: 70vw;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.mapcontainer svg{
+  height:100%;
+  width: 100%;
+}
+
+.mapcontainer svg path:focus{
+  outline: none;
+}
