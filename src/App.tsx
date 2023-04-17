@@ -7,7 +7,7 @@ import "react-tooltip/dist/react-tooltip.css";
 
 function App() {
   const [content, setContent] = useState("");
-  const [countryInfo, setCountryInfo] = useState({ name: "" });
+  const [countryInfo, setCountryInfo] = useState({ name: "", available: true });
 
   return (
     <div className={styles.app}>

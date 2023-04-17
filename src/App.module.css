@@ -20,3 +20,7 @@
 .mapcontainer svg path:focus{
   outline: none;
 }
+
+/* .mapcontainer svg path:focus{
+  fill: red !important;
+} */
