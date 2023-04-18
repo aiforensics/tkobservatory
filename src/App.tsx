@@ -4,6 +4,8 @@ import MapReact from "./components/MapReact";
 import { Tooltip } from "react-tooltip";
 import SideBar from "./components/Sidebar";
 import "react-tooltip/dist/react-tooltip.css";
+import ResetButton from "./components/ResetButton";
+import { DateRange } from "./components/DateRange";
 
 function App() {
   const initialStateCountry = {
@@ -44,15 +46,15 @@ function App() {
           id="my-anchor-element"
           data-tooltip-float={true}
         >
+          <DateRange todayEnd={todayEnd} setDates={setDates} dates={dates} />
           <MapReact
             setTooltipContent={setContent}
             onClickedCountry={setCountryInfo}
-            clearCountryInfo={clearCountryInfo}
-            dates={dates}
-            setDates={setDates}
-            yesterdayBegin={yesterdayBegin}
+            countryInfo={countryInfo}
           />
+
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
+          <ResetButton unclickCountries={clearCountryInfo} />
         </div>
         <SideBar {...countryInfo} dates={dates} />
       </main>

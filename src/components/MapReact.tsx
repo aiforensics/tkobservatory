@@ -1,4 +1,4 @@
-import { useEffect, useState, memo } from "react";
+import { useEffect, useState, memo, useMemo } from "react";
 import { csv } from "d3-fetch";
 import { scaleLinear } from "d3-scale";
 import {
@@ -8,9 +8,7 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 import { geoPolyhedralWaterman } from "d3-geo-projection";
-import { DateRange } from "./DateRange";
 import { PatternLines } from "@vx/pattern";
-import ResetButton from "./ResetButton";
 
 const geoUrl = "/features.json";
 
@@ -21,13 +19,21 @@ const colorScale = scaleLinear()
 const MapChart = ({
   setTooltipContent,
   onClickedCountry,
-  clearCountryInfo,
-  dates,
-  setDates,
-  todayEnd,
+  countryInfo,
 }: any) => {
+  const initialZoomCoor = useMemo(() => {
+    return {
+      coord: [30, 60],
+      zoom: 1.1,
+    };
+  }, []);
+
   const [data, setData] = useState([]);
-  const [clickedCountry, setClickedCountry] = useState(false);
+  const [center, setCenter] = useState(initialZoomCoor.coord);
+  const [zoom, setZoom] = useState(initialZoomCoor.zoom);
+  const [country, setCountry] = useState("");
+  let zoomVar: number;
+  let centerVar: number[];
 
   const width = window.innerWidth * 0.7;
   const height = 600;
@@ -42,20 +48,29 @@ const MapChart = ({
     });
   }, []);
 
+  useEffect(() => {
+    const cleanMap = () => {
+      setCenter(initialZoomCoor.coord);
+      setZoom(initialZoomCoor.zoom);
+      setCountry("");
+    };
+    if (countryInfo.name === "Worldwide") cleanMap();
+  }, [countryInfo, initialZoomCoor]);
+
   const countryClicked = (props: any) => {
-    setClickedCountry(props.name);
+    setCenter(centerVar);
+    setZoom(zoomVar);
+    setCountry(props.name);
     onClickedCountry(props);
   };
 
-  const unclickCountries = () => {
-    setClickedCountry(false);
-    clearCountryInfo();
+  const saveMapView = (center: any, zoom: any) => {
+    centerVar = center;
+    zoomVar = zoom;
   };
 
   return (
     <>
-      <DateRange todayEnd={todayEnd} setDates={setDates} dates={dates} />
-      <ResetButton unclickCountries={unclickCountries} />
       <ComposableMap
         projection={projection}
         projectionConfig={{
@@ -71,21 +86,33 @@ const MapChart = ({
           orientation={["diagonal"]}
         />
         {/* <Sphere stroke="#ff5233" strokeWidth={0.1} /> */}
-        <ZoomableGroup center={[30, 60]} zoom={1.1}>
-          {data.length > 0 && (
+        <ZoomableGroup
+          center={center}
+          zoom={zoom}
+          onMoveEnd={({ coordinates, zoom }: any) => {
+            saveMapView(coordinates, zoom);
+          }}
+        >
+          {data && data.length > 0 && (
             <Geographies geography={geoUrl} strokeWidth={0.5} stroke="#9cd2ff">
               {({ geographies }: any) =>
+                geographies.length &&
                 geographies.map((geo: any) => {
-                  const d = data.find((s) => s["ISO3"] === geo.id);
+                  // const d = data.find((s) => s["ISO3"] === geo.id);
                   const availableCountry =
                     geo.properties && geo.properties.available;
-                  const isClicked = clickedCountry === geo.properties.name;
+                  const isClicked = country === geo.properties.name;
+
                   return (
                     <Geography
                       key={geo.rsmKey}
                       geography={geo}
-                      //  style={{ visibility: this.state.driverDetails.firstName != undefined? 'visible': 'hidden'}}
-
+                      // style={{
+                      //   visibility:
+                      //     this.state.driverDetails.firstName != undefined
+                      //       ? "visible"
+                      //       : "hidden",
+                      // }}
                       // fill={d ? colorScale(d["2017"]) : "#F5F4F6"}
                       fill={
                         !availableCountry
@@ -99,7 +126,7 @@ const MapChart = ({
                         //   fill: availableCountry ? "#06F" : "#808080",
                         // },
                         hover: {
-                          fill: availableCountry ? "#ffdd19" : "",
+                          fill: availableCountry ? "#fdf1ab" : "",
                         },
                       }}
                       onMouseEnter={() => {
