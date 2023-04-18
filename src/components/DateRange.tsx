@@ -4,29 +4,12 @@ import "@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css";
 import "react-calendar/dist/Calendar.css";
 import styles from "../styles/dateRange.module.css";
 
-export const DateRange = () => {
-  const now = new Date();
-  const yesterdayBegin = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate() - 1
-  );
-  const todayEnd = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate(),
-    23,
-    59,
-    59,
-    999
-  );
-
-  const [value, setVal] = useState([yesterdayBegin, todayEnd]);
+export const DateRange = ({ todayEnd, dates, setDates }: any) => {
   return (
     <DateRangePicker
       className={styles.dateRange}
-      onChange={(val: Date[]) => setVal(val)}
-      value={value}
+      onChange={(val: Date[]) => setDates(val)}
+      value={dates}
       maxDate={todayEnd}
     />
   );

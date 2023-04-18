@@ -10,6 +10,7 @@
   width: 70vw;
   height: 80vh;
   overflow: hidden;
+  position: relative;
 }
 
 .mapcontainer svg{

@@ -10,6 +10,7 @@ import {
 import { geoPolyhedralWaterman } from "d3-geo-projection";
 import { DateRange } from "./DateRange";
 import { PatternLines } from "@vx/pattern";
+import ResetButton from "./ResetButton";
 
 const geoUrl = "/features.json";
 
@@ -17,7 +18,14 @@ const colorScale = scaleLinear()
   .domain([0.29, 0.68])
   .range(["#ffedea", "#ff5233"]);
 
-const MapChart = ({ setTooltipContent, onClickedCountry }: any) => {
+const MapChart = ({
+  setTooltipContent,
+  onClickedCountry,
+  clearCountryInfo,
+  dates,
+  setDates,
+  todayEnd,
+}: any) => {
   const [data, setData] = useState([]);
   const [clickedCountry, setClickedCountry] = useState(false);
 
@@ -39,9 +47,15 @@ const MapChart = ({ setTooltipContent, onClickedCountry }: any) => {
     onClickedCountry(props);
   };
 
+  const unclickCountries = () => {
+    setClickedCountry(false);
+    clearCountryInfo();
+  };
+
   return (
     <>
-      <DateRange />
+      <DateRange todayEnd={todayEnd} setDates={setDates} dates={dates} />
+      <ResetButton unclickCountries={unclickCountries} />
       <ComposableMap
         projection={projection}
         projectionConfig={{
