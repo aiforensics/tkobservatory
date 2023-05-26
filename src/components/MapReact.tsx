@@ -7,7 +7,7 @@ import {
   Geography,
   ZoomableGroup,
 } from "react-simple-maps";
-import { geoPolyhedralWaterman } from "d3-geo-projection";
+import { geoPolyhedralWaterman, geoAugust } from "d3-geo-projection";
 import { PatternLines } from "@vx/pattern";
 
 const geoUrl = "/features.json";
@@ -20,14 +20,16 @@ const MapChart = ({
   setTooltipContent,
   onClickedCountry,
   countryInfo,
+  countriesClickedGlobal,
 }: any) => {
   const initialZoomCoor = useMemo(() => {
     return {
       coord: [30, 60],
-      zoom: 1.1,
+      zoom: 0.6,
     };
   }, []);
 
+  console.log("countriesClicked->", countriesClickedGlobal);
   const [data, setData] = useState([]);
   const [center, setCenter] = useState(initialZoomCoor.coord);
   const [zoom, setZoom] = useState(initialZoomCoor.zoom);
@@ -38,7 +40,7 @@ const MapChart = ({
   const width = window.innerWidth * 0.7;
   const height = 600;
   let projection;
-  projection = geoPolyhedralWaterman()
+  projection = geoAugust()
     .translate([width / 2, height / 2])
     .scale(140);
 
@@ -103,6 +105,15 @@ const MapChart = ({
                     geo.properties && geo.properties.available;
                   const isClicked = country === geo.properties.name;
 
+                  // console.log("countriesClickedGlobal", countriesClickedGlobal);
+                  const foundcountriesClickedGlobalFound =
+                    countriesClickedGlobal.find((element: string) => {
+                      if (element === geo.id) {
+                        console.log("HEY", element);
+                      }
+                      return element === geo.id;
+                    });
+
                   return (
                     <Geography
                       key={geo.rsmKey}
@@ -117,6 +128,8 @@ const MapChart = ({
                       fill={
                         !availableCountry
                           ? "url('#lines')"
+                          : foundcountriesClickedGlobalFound
+                          ? "#FF0000"
                           : isClicked
                           ? "#ffdd19"
                           : "#06F"

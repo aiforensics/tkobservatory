@@ -6,8 +6,13 @@ import SideBar from "./components/Sidebar";
 import "react-tooltip/dist/react-tooltip.css";
 import ResetButton from "./components/ResetButton";
 import { DateRange } from "./components/DateRange";
+import { useApiGet, TApiResponse } from "./hooks/useApiHook";
 
 function App() {
+  const globalResponse: TApiResponse = useApiGet(
+    "http://localhost:8000/global"
+  );
+
   const initialStateCountry = {
     name: "Worldwide",
     available: true,
@@ -30,9 +35,15 @@ function App() {
   const [content, setContent] = useState("");
   const [countryInfo, setCountryInfo] = useState(initialStateCountry);
   const [dates, setDates] = useState([yesterdayBegin, todayEnd]);
+  const [countries, setCountries] = useState<string[]>([]);
 
   const clearCountryInfo = () => {
     setCountryInfo(initialStateCountry);
+  };
+
+  const handleClickSidebarItem = (e: React.MouseEvent, countries: string[]) => {
+    setCountries(countries);
+    console.log("countries--", countries);
   };
 
   return (
@@ -51,12 +62,20 @@ function App() {
             setTooltipContent={setContent}
             onClickedCountry={setCountryInfo}
             countryInfo={countryInfo}
+            countriesClickedGlobal={countries}
           />
 
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
           <ResetButton unclickCountries={clearCountryInfo} />
         </div>
-        <SideBar {...countryInfo} dates={dates} />
+        <SideBar
+          {...countryInfo}
+          dates={dates}
+          globalData={globalResponse.data}
+          handleClickSidebarItem={(e, countries) =>
+            handleClickSidebarItem(e, countries)
+          }
+        />
       </main>
     </div>
   );

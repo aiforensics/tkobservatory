@@ -1,0 +1,14 @@
+.container{
+  border: 1px solid;
+  margin-bottom: 10px;
+}
+
+.container ul{
+  list-style-type: none;
+  text-align: left;
+  padding-left: 0;
+}
+
+.container ul li{
+  margin-bottom: 5px;
+}
