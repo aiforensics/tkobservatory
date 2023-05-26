@@ -4,6 +4,10 @@
 
 In the project directory, you can run:
 
+### `json-server --watch data.json --port 8000`
+
+Runs the fake API with the mocked data contained in /data.json.
+
 ### `npm start`
 
 Runs the app in the development mode.\
