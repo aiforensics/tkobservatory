@@ -6,6 +6,7 @@ interface CountryInfo {
   name: string;
   dates: Date[];
   globalData: GlobalData[];
+  isLoadingData: Boolean;
   handleClickSidebarItem: (e: React.MouseEvent, countries: string[]) => void;
 }
 
@@ -13,6 +14,7 @@ const SideBar: React.FC<CountryInfo> = ({
   name,
   dates,
   globalData,
+  isLoadingData,
   handleClickSidebarItem,
 }: CountryInfo): JSX.Element => {
   const formatDates =
@@ -28,10 +30,14 @@ const SideBar: React.FC<CountryInfo> = ({
           {formatDates[0]} - {formatDates[1]}
         </h3>
       )}
-      <SidebarListModule
-        globalData={globalData}
-        handleClickSidebarItem={handleClickSidebarItem}
-      />
+      {!isLoadingData ? (
+        <SidebarListModule
+          globalData={globalData}
+          handleClickSidebarItem={handleClickSidebarItem}
+        />
+      ) : (
+        "Retrieving data..."
+      )}
     </div>
   );
 };
