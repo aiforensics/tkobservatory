@@ -29,7 +29,6 @@ const MapChart = ({
     };
   }, []);
 
-  console.log("countriesClicked->", countriesClickedGlobal);
   const [data, setData] = useState([]);
   const [center, setCenter] = useState(initialZoomCoor.coord);
   const [zoom, setZoom] = useState(initialZoomCoor.zoom);
@@ -105,11 +104,9 @@ const MapChart = ({
                     geo.properties && geo.properties.available;
                   const isClicked = country === geo.properties.name;
 
-                  // console.log("countriesClickedGlobal", countriesClickedGlobal);
                   const foundcountriesClickedGlobalFound =
                     countriesClickedGlobal.find((element: string) => {
                       if (element === geo.id) {
-                        console.log("HEY", element);
                       }
                       return element === geo.id;
                     });

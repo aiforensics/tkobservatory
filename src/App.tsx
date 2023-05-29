@@ -43,7 +43,6 @@ function App() {
 
   const handleClickSidebarItem = (e: React.MouseEvent, countries: string[]) => {
     setCountries(countries);
-    console.log("countries--", countries);
   };
 
   return (
