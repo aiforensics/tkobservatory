@@ -21,7 +21,7 @@ function App() {
   const yesterdayBegin = new Date(
     now.getFullYear(),
     now.getMonth(),
-    now.getDate() - 1
+    now.getDate() - 14
   );
   const todayEnd = new Date(
     now.getFullYear(),
