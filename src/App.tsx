@@ -40,7 +40,7 @@ function App() {
   const [content, setContent] = useState("");
   const [countryInfo, setCountryInfo] = useState(initialStateCountry);
   const [dates, setDates] = useState([defaultBegin, todayEnd]);
-  const [countries, setCountries] = useState<string[]>([]);
+  const [countries, setCountries] = useState<String[]>([]);
   const [loading, setLoading] = useState<Boolean>(false);
 
   let globalResponse: TApiResponse = InitialApiResponse;
@@ -48,6 +48,8 @@ function App() {
     `https://ttgo.trex.zone/foryourecommendations/global?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}`,
     dates
   );
+
+  const globalCountryCodes = useApiGet("https://ttgo.trex.zone/api/world");
 
   useEffect(() => {
     setLoading(globalResponse.loading);
@@ -57,7 +59,7 @@ function App() {
     setCountryInfo(initialStateCountry);
   };
 
-  const handleClickSidebarItem = (e: React.MouseEvent, countries: string[]) => {
+  const handleClickSidebarItem = (e: React.MouseEvent, countries: String[]) => {
     setCountries(countries);
   };
 
@@ -91,6 +93,7 @@ function App() {
           handleClickSidebarItem={(e, countries) =>
             handleClickSidebarItem(e, countries)
           }
+          globalCountryCodes={globalCountryCodes.data}
         />
       </main>
     </div>

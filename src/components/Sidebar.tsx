@@ -1,13 +1,14 @@
 import styles from "../styles/sidebar.module.css";
 import SidebarListModule from "./SidebarListModule";
-import { GlobalData } from "../types/global";
+import { GlobalData, CountryCodes } from "../types/global";
 
 interface CountryInfo {
-  name: string;
+  name: String;
   dates: Date[];
   globalData: GlobalData[];
+  globalCountryCodes: CountryCodes[];
   isLoadingData: Boolean;
-  handleClickSidebarItem: (e: React.MouseEvent, countries: string[]) => void;
+  handleClickSidebarItem: (e: React.MouseEvent, countries: String[]) => void;
 }
 
 const SideBar: React.FC<CountryInfo> = ({
@@ -15,6 +16,7 @@ const SideBar: React.FC<CountryInfo> = ({
   dates,
   globalData,
   isLoadingData,
+  globalCountryCodes,
   handleClickSidebarItem,
 }: CountryInfo): JSX.Element => {
   const formatDates =
@@ -22,6 +24,17 @@ const SideBar: React.FC<CountryInfo> = ({
     dates.map((dates) => {
       return dates.toLocaleDateString();
     });
+
+  const parsedData: GlobalData[] =
+    globalData &&
+    globalData.map((data) => {
+      const arrayCountriesParsed = data.countries.map((country, i) => {
+        const index = globalCountryCodes.findIndex((x) => x.three === country);
+        return globalCountryCodes[index].name;
+      });
+      return { ...data, countryNames: arrayCountriesParsed };
+    });
+
   return (
     <div className={styles.container}>
       <h2>{name}</h2>
@@ -32,7 +45,7 @@ const SideBar: React.FC<CountryInfo> = ({
       )}
       {!isLoadingData ? (
         <SidebarListModule
-          globalData={globalData}
+          parsedData={parsedData}
           handleClickSidebarItem={handleClickSidebarItem}
         />
       ) : (

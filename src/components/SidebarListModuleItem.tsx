@@ -3,7 +3,7 @@ import styles from "../styles/sidebarListModuleItem.module.css";
 
 interface ItemInterface {
   globalDataItem: GlobalData;
-  handleClickSidebarItem: (e: React.MouseEvent, countries: string[]) => void;
+  handleClickSidebarItem: (e: React.MouseEvent, countries: String[]) => void;
 }
 
 const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
@@ -52,7 +52,7 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
           <strong>Countries:</strong>
           {isThereCountries ? (
             <ul>
-              {globalDataItem.countries.map((country) => (
+              {globalDataItem.countryNames!.map((country) => (
                 <li>{country}</li>
               ))}
             </ul>

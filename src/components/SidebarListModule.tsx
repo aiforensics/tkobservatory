@@ -2,16 +2,16 @@ import SidebarListModuleItem from "./SidebarListModuleItem";
 import { GlobalData } from "../types/global";
 
 type Props = {
-  globalData: GlobalData[];
-  handleClickSidebarItem: (e: React.MouseEvent, countries: string[]) => void;
+  parsedData: GlobalData[];
+  handleClickSidebarItem: (e: React.MouseEvent, countries: String[]) => void;
 };
 
-const SidebarListModule = ({ globalData, handleClickSidebarItem }: Props) => {
+const SidebarListModule = ({ parsedData, handleClickSidebarItem }: Props) => {
   return (
     <div>
       <ul>
-        {globalData &&
-          globalData.map((globalDataItem, i) => (
+        {parsedData &&
+          parsedData.map((globalDataItem, i) => (
             <li key={i}>
               <SidebarListModuleItem
                 globalDataItem={globalDataItem}

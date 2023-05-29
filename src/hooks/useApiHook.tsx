@@ -8,7 +8,7 @@ export type TApiResponse = {
   loading: Boolean;
 };
 
-export const useApiGet = (url: string, deps: any): TApiResponse => {
+export const useApiGet = (url: string, deps: any = null): TApiResponse => {
   const [status, setStatus] = useState<Number>(0);
   const [statusText, setStatusText] = useState<String>("");
   const [data, setData] = useState<any>();
