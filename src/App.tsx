@@ -10,7 +10,7 @@ import { useApiGet, TApiResponse } from "./hooks/useApiHook";
 
 function App() {
   const globalResponse: TApiResponse = useApiGet(
-    "http://localhost:8000/global"
+    "https://ttgo.trex.zone/foryourecommendations/global"
   );
 
   const initialStateCountry = {

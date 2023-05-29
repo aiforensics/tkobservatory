@@ -9,7 +9,6 @@ type Props = {
 const SidebarListModule = ({ globalData, handleClickSidebarItem }: Props) => {
   return (
     <div>
-      SidebarListModule
       <ul>
         {globalData &&
           globalData.map((globalDataItem, i) => (

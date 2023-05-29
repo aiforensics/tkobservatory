@@ -25,18 +25,6 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
           {globalDataItem.authorName ? globalDataItem.authorName : "no data"}
         </li>
         <li>
-          <strong>Countries:</strong>
-          {isThereCountries ? (
-            <ul>
-              {globalDataItem.countries.map((country) => (
-                <li>{country}</li>
-              ))}
-            </ul>
-          ) : (
-            "no data"
-          )}
-        </li>
-        <li>
           <strong>Created Time:</strong>
           {globalDataItem.createTime ? globalDataItem.createTime : "no data"}
         </li>
@@ -59,6 +47,18 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
         <li>
           <strong>Video Id:</strong>
           {globalDataItem.videoId ? globalDataItem.videoId : "no data"}
+        </li>
+        <li>
+          <strong>Countries:</strong>
+          {isThereCountries ? (
+            <ul>
+              {globalDataItem.countries.map((country) => (
+                <li>{country}</li>
+              ))}
+            </ul>
+          ) : (
+            "no data"
+          )}
         </li>
       </ul>
     </div>
