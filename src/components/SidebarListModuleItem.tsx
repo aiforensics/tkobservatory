@@ -1,5 +1,6 @@
 import { GlobalData } from "../types/global";
 import styles from "../styles/sidebarListModuleItem.module.css";
+import Accordion from "./Accordion";
 
 interface ItemInterface {
   globalDataItem: GlobalData;
@@ -10,6 +11,16 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
   const { globalDataItem, handleClickSidebarItem } = props;
   const isThereCountries =
     globalDataItem.countries && globalDataItem.countries.length;
+  const listOfCountries = isThereCountries ? (
+    <ul>
+      {globalDataItem.countryNames!.map((country) => (
+        <li>{country}</li>
+      ))}
+    </ul>
+  ) : (
+    "no data"
+  );
+
   return (
     <div
       className={styles.container}
@@ -49,16 +60,13 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
           {globalDataItem.videoId ? globalDataItem.videoId : "no data"}
         </li>
         <li key="countries">
-          <strong>Countries:</strong>
-          {isThereCountries ? (
-            <ul>
-              {globalDataItem.countryNames!.map((country) => (
-                <li>{country}</li>
-              ))}
-            </ul>
-          ) : (
-            "no data"
-          )}
+          <div className={styles.accordion}>
+            <Accordion
+              title={"Countries"}
+              content={listOfCountries}
+              customClass={styles["fromCountries"]}
+            />
+          </div>
         </li>
       </ul>
     </div>

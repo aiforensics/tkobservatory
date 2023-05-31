@@ -1,6 +1,18 @@
 .app {
   text-align: center;
 }
+
+.appHeader{
+  height: 60px;
+  max-height: 60px;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.appHeader h2{
+  margin: 0;
+}
 .maincontainer {
   display: flex;
   flex-direction: row;
@@ -8,7 +20,7 @@
 .mapcontainer{
   border: 1px solid;
   width: 70vw;
-  height: 80vh;
+  height: calc(100vh - 62px);
   overflow: hidden;
   position: relative;
 }

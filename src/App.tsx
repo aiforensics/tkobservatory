@@ -65,7 +65,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <header className="App-header">
+      <header className={styles.appHeader}>
         <h2>Welcome to Tiktok Global</h2>
       </header>
       <main className={styles.maincontainer}>
