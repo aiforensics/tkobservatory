@@ -4,13 +4,18 @@ import { GlobalData } from "../types/global";
 
 type Props = {
   parsedData: GlobalData[];
+  cleanSelection: Boolean;
   handleClickSidebarItem: (
     e: React.MouseEvent,
     dataClicked: GlobalData
   ) => void;
 };
 
-const SidebarListModule = ({ parsedData, handleClickSidebarItem }: Props) => {
+const SidebarListModule = ({
+  parsedData,
+  handleClickSidebarItem,
+  cleanSelection,
+}: Props) => {
   const [activeItem, setActiveItem] = useState("");
 
   const handleHighlight = (e: React.MouseEvent, dataClicked: GlobalData) => {
@@ -26,7 +31,9 @@ const SidebarListModule = ({ parsedData, handleClickSidebarItem }: Props) => {
               <SidebarListModuleItem
                 globalDataItem={globalDataItem}
                 handleClickSidebarItem={handleHighlight}
-                active={activeItem === globalDataItem.videoId}
+                active={
+                  cleanSelection ? false : activeItem === globalDataItem.videoId
+                }
               />
             </li>
           ))}

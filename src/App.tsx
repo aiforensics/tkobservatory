@@ -74,6 +74,7 @@ function App() {
 
   const clearCountryInfo = () => {
     setCountryInfo(initialStateCountry);
+    setDataClicked(InitialDataClickedObject);
   };
 
   const handleClickSidebarItem = (
@@ -103,7 +104,7 @@ function App() {
           />
 
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
-          {dataClicked.authorId && <VideoPlayer videoData={dataClicked} />}
+          {/* {dataClicked.authorId && <VideoPlayer videoData={dataClicked} />} */}
           <ResetButton unclickCountries={clearCountryInfo} />
         </div>
         <SideBar
@@ -115,6 +116,9 @@ function App() {
             handleClickSidebarItem(e, dataClicked)
           }
           globalCountryCodes={globalCountryCodes.data}
+          cleanSelection={
+            dataClicked.videoId === InitialDataClickedObject.videoId
+          }
         />
       </main>
     </div>

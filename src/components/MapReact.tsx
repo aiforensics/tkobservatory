@@ -55,7 +55,8 @@ const MapChart = ({
       setZoom(initialZoomCoor.zoom);
       setCountry("");
     };
-    if (countryInfo.name === "Worldwide") cleanMap();
+
+    if (countryInfo.name === "Global Recommendations") cleanMap();
   }, [countryInfo, initialZoomCoor]);
 
   const countryClicked = (props: any) => {
