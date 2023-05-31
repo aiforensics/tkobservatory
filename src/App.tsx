@@ -59,10 +59,10 @@ function App() {
     InitialDataClickedObject
   );
   const [loading, setLoading] = useState<Boolean>(false);
-
+  const VIDEOS_REQUESTED = 30;
   let globalResponse: TApiResponse = InitialApiResponse;
   globalResponse = useApiGet(
-    `https://ttgo.trex.zone/foryourecommendations/global?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}`,
+    `https://ttgo.trex.zone/foryourecommendations/global?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}`,
     dates
   );
 

@@ -17,6 +17,10 @@ const SidebarListModule = ({
   cleanSelection,
 }: Props) => {
   const [activeItem, setActiveItem] = useState("");
+  const [resultsShown, setResultsShown] = useState(10);
+  const handleShowMore = () => {
+    setResultsShown(resultsShown + 10);
+  };
 
   const handleHighlight = (e: React.MouseEvent, dataClicked: GlobalData) => {
     setActiveItem(e.currentTarget.id);
@@ -26,7 +30,7 @@ const SidebarListModule = ({
     <div>
       <ul>
         {parsedData &&
-          parsedData.map((globalDataItem, i) => (
+          parsedData.slice(0, resultsShown).map((globalDataItem, i) => (
             <li key={i}>
               <SidebarListModuleItem
                 globalDataItem={globalDataItem}
@@ -38,6 +42,7 @@ const SidebarListModule = ({
             </li>
           ))}
       </ul>
+      {resultsShown < 30 && <button onClick={handleShowMore}>show more</button>}
     </div>
   );
 };

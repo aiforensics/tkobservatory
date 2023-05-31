@@ -3,4 +3,6 @@
   background-color: aquamarine;
   border-left: 1px solid red;
   border: 1px solid;
+  height: calc(100vh - 62px);
+  overflow: scroll;
 }
