@@ -5,10 +5,11 @@ import Accordion from "./Accordion";
 interface ItemInterface {
   globalDataItem: GlobalData;
   handleClickSidebarItem: (e: React.MouseEvent, countries: String[]) => void;
+  active: Boolean;
 }
 
 const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
-  const { globalDataItem, handleClickSidebarItem } = props;
+  const { globalDataItem, handleClickSidebarItem, active } = props;
   const isThereCountries =
     globalDataItem.countries && globalDataItem.countries.length;
   const listOfCountries = isThereCountries ? (
@@ -23,8 +24,9 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
 
   return (
     <div
-      className={styles.container}
+      className={`${styles.container} ${active ? styles.active : ""}`}
       onClick={(e) => handleClickSidebarItem(e, globalDataItem.countries)}
+      id={globalDataItem.videoId as string}
     >
       <ul>
         <li key="authorId">
