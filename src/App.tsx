@@ -7,6 +7,8 @@ import "react-tooltip/dist/react-tooltip.css";
 import ResetButton from "./components/ResetButton";
 import { DateRange } from "./components/DateRange";
 import { useApiGet, TApiResponse } from "./hooks/useApiHook";
+import VideoPlayer from "./components/VideoPlayer";
+import { GlobalData } from "./types/global";
 
 function App() {
   const initialStateCountry = {
@@ -37,10 +39,25 @@ function App() {
     loading: true,
   };
 
+  const InitialDataClickedObject = {
+    authorId: "",
+    authorName: "",
+    countries: [],
+    countryNames: [],
+    createTime: "",
+    description: "",
+    musicAuthor: "",
+    musicId: "",
+    musicTitle: "",
+    videoId: "",
+  };
+
   const [content, setContent] = useState("");
   const [countryInfo, setCountryInfo] = useState(initialStateCountry);
   const [dates, setDates] = useState([defaultBegin, todayEnd]);
-  const [countries, setCountries] = useState<String[]>([]);
+  const [dataClicked, setDataClicked] = useState<GlobalData>(
+    InitialDataClickedObject
+  );
   const [loading, setLoading] = useState<Boolean>(false);
 
   let globalResponse: TApiResponse = InitialApiResponse;
@@ -59,8 +76,11 @@ function App() {
     setCountryInfo(initialStateCountry);
   };
 
-  const handleClickSidebarItem = (e: React.MouseEvent, countries: String[]) => {
-    setCountries(countries);
+  const handleClickSidebarItem = (
+    e: React.MouseEvent,
+    dataClicked: GlobalData
+  ) => {
+    setDataClicked(dataClicked);
   };
 
   return (
@@ -79,10 +99,11 @@ function App() {
             setTooltipContent={setContent}
             onClickedCountry={setCountryInfo}
             countryInfo={countryInfo}
-            countriesClickedGlobal={countries}
+            countriesClickedGlobal={dataClicked.countries}
           />
 
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
+          {dataClicked.authorId && <VideoPlayer videoData={dataClicked} />}
           <ResetButton unclickCountries={clearCountryInfo} />
         </div>
         <SideBar
@@ -90,8 +111,8 @@ function App() {
           dates={dates}
           globalData={globalResponse.data}
           isLoadingData={loading}
-          handleClickSidebarItem={(e, countries) =>
-            handleClickSidebarItem(e, countries)
+          handleClickSidebarItem={(e, dataClicked) =>
+            handleClickSidebarItem(e, dataClicked)
           }
           globalCountryCodes={globalCountryCodes.data}
         />

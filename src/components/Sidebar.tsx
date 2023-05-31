@@ -8,7 +8,10 @@ interface CountryInfo {
   globalData: GlobalData[];
   globalCountryCodes: CountryCodes[];
   isLoadingData: Boolean;
-  handleClickSidebarItem: (e: React.MouseEvent, countries: String[]) => void;
+  handleClickSidebarItem: (
+    e: React.MouseEvent,
+    dataClicked: GlobalData
+  ) => void;
 }
 
 const SideBar: React.FC<CountryInfo> = ({

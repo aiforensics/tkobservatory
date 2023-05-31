@@ -4,16 +4,18 @@ import { GlobalData } from "../types/global";
 
 type Props = {
   parsedData: GlobalData[];
-  handleClickSidebarItem: (e: React.MouseEvent, countries: String[]) => void;
+  handleClickSidebarItem: (
+    e: React.MouseEvent,
+    dataClicked: GlobalData
+  ) => void;
 };
 
 const SidebarListModule = ({ parsedData, handleClickSidebarItem }: Props) => {
   const [activeItem, setActiveItem] = useState("");
 
-  const handleHighlight = (e: React.MouseEvent, countries: Array<String>) => {
-    console.log();
+  const handleHighlight = (e: React.MouseEvent, dataClicked: GlobalData) => {
     setActiveItem(e.currentTarget.id);
-    handleClickSidebarItem(e, countries);
+    handleClickSidebarItem(e, dataClicked);
   };
   return (
     <div>
