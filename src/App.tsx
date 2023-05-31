@@ -86,7 +86,7 @@ function App() {
   return (
     <div className={styles.app}>
       <header className={styles.appHeader}>
-        <h2>Welcome to Tiktok Global</h2>
+        <h2>Welcome to TikTok Global Observatory</h2>
       </header>
       <main className={styles.maincontainer}>
         <div
