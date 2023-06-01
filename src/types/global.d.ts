@@ -2,14 +2,20 @@ export type GlobalData = {
   authorId: String;
   authorName: String;
   countries: Array<String>;
-  countryNames?: Array<String>;
   createTime: String;
   description: String;
   musicAuthor: String;
   musicId: String;
   musicTitle: String;
+  occurrencies: Number;
   videoId: String;
 };
+
+export type GlobalDataParsed = GlobalData & {
+  countryNames: Array<String>;
+};
+
+type DateWithNewMember<T> = Partial<T> & { newMember: boolean };
 
 export type CountryCodes = {
   name: String;

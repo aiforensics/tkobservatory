@@ -1,13 +1,13 @@
 import { useState } from "react";
 import SidebarListModuleItem from "./SidebarListModuleItem";
-import { GlobalData } from "../types/global";
+import { GlobalDataParsed } from "../types/global";
 
 type Props = {
-  parsedData: GlobalData[];
+  parsedData: GlobalDataParsed[];
   cleanSelection: Boolean;
   handleClickSidebarItem: (
     e: React.MouseEvent,
-    dataClicked: GlobalData
+    dataClicked: GlobalDataParsed
   ) => void;
 };
 
@@ -22,7 +22,10 @@ const SidebarListModule = ({
     setResultsShown(resultsShown + 10);
   };
 
-  const handleHighlight = (e: React.MouseEvent, dataClicked: GlobalData) => {
+  const handleHighlight = (
+    e: React.MouseEvent,
+    dataClicked: GlobalDataParsed
+  ) => {
     setActiveItem(e.currentTarget.id);
     handleClickSidebarItem(e, dataClicked);
   };

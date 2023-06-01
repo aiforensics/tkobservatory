@@ -1,6 +1,6 @@
 import styles from "../styles/sidebar.module.css";
 import SidebarListModule from "./SidebarListModule";
-import { GlobalData, CountryCodes } from "../types/global";
+import { GlobalData, CountryCodes, GlobalDataParsed } from "../types/global";
 
 interface CountryInfo {
   name: String;
@@ -11,7 +11,7 @@ interface CountryInfo {
   cleanSelection: Boolean;
   handleClickSidebarItem: (
     e: React.MouseEvent,
-    dataClicked: GlobalData
+    dataClicked: GlobalDataParsed
   ) => void;
 }
 
@@ -30,7 +30,7 @@ const SideBar: React.FC<CountryInfo> = ({
       return dates.toLocaleDateString();
     });
 
-  const parsedData: GlobalData[] =
+  const parsedData: GlobalDataParsed[] =
     globalData &&
     globalData.map((data) => {
       const arrayCountriesParsed = data.countries.map((country, i) => {

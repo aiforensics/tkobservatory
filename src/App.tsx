@@ -8,7 +8,7 @@ import ResetButton from "./components/ResetButton";
 import { DateRange } from "./components/DateRange";
 import { useApiGet, TApiResponse } from "./hooks/useApiHook";
 import VideoPlayer from "./components/VideoPlayer";
-import { GlobalData } from "./types/global";
+import { GlobalDataParsed } from "./types/global";
 
 function App() {
   const initialStateCountry = {
@@ -49,13 +49,14 @@ function App() {
     musicAuthor: "",
     musicId: "",
     musicTitle: "",
+    occurrencies: 0,
     videoId: "",
   };
 
   const [content, setContent] = useState("");
   const [countryInfo, setCountryInfo] = useState(initialStateCountry);
   const [dates, setDates] = useState([defaultBegin, todayEnd]);
-  const [dataClicked, setDataClicked] = useState<GlobalData>(
+  const [dataClicked, setDataClicked] = useState<GlobalDataParsed>(
     InitialDataClickedObject
   );
   const [loading, setLoading] = useState<Boolean>(false);
@@ -79,7 +80,7 @@ function App() {
 
   const handleClickSidebarItem = (
     e: React.MouseEvent,
-    dataClicked: GlobalData
+    dataClicked: GlobalDataParsed
   ) => {
     setDataClicked(dataClicked);
   };

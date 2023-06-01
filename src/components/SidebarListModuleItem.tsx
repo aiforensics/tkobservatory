@@ -1,12 +1,12 @@
-import { GlobalData } from "../types/global";
+import { GlobalDataParsed } from "../types/global";
 import styles from "../styles/sidebarListModuleItem.module.css";
 import Accordion from "./Accordion";
 
 interface ItemInterface {
-  globalDataItem: GlobalData;
+  globalDataItem: GlobalDataParsed;
   handleClickSidebarItem: (
     e: React.MouseEvent,
-    dataClicked: GlobalData
+    dataClicked: GlobalDataParsed
   ) => void;
   active: Boolean;
 }
