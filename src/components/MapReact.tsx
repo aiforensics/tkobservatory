@@ -9,6 +9,7 @@ import {
 } from "react-simple-maps";
 import { geoPolyhedralWaterman, geoAugust } from "d3-geo-projection";
 import { PatternLines } from "@vx/pattern";
+import { INITIAL_LOCATION } from "./../constants";
 
 const geoUrl = "/features.json";
 
@@ -21,6 +22,7 @@ const MapChart = ({
   onClickedCountry,
   countryInfo,
   countriesClickedGlobal,
+  clearCountriesGlobal,
 }: any) => {
   const initialZoomCoor = useMemo(() => {
     return {
@@ -56,10 +58,11 @@ const MapChart = ({
       setCountry("");
     };
 
-    if (countryInfo.name === "Global Recommendations") cleanMap();
+    if (countryInfo.name === INITIAL_LOCATION) cleanMap();
   }, [countryInfo, initialZoomCoor]);
 
   const countryClicked = (props: any) => {
+    clearCountriesGlobal();
     setCenter(centerVar);
     setZoom(zoomVar);
     setCountry(props.name);

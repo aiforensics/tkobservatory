@@ -22,3 +22,31 @@ export type CountryCodes = {
   three: String;
   two: String;
 };
+
+export type TopByCountryData = {
+  authorId: String;
+  authorName: String;
+  countryCode: String;
+  createTime: String;
+  description: String;
+  musicAuthor: String;
+  musicId: String;
+  musicTitle: String;
+  occurrencies: Number;
+  videoId: String;
+};
+
+export type DataItem = {
+  authorId: String;
+  authorName: String;
+  countryCode?: String;
+  createTime: String;
+  description: String;
+  musicAuthor: String;
+  musicId: String;
+  musicTitle: String;
+  occurrencies: Number;
+  videoId: String;
+  countries?: Array<String>;
+  countryNames?: Array<String>;
+};

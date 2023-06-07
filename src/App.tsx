@@ -8,11 +8,12 @@ import ResetButton from "./components/ResetButton";
 import { DateRange } from "./components/DateRange";
 import { useApiGet, TApiResponse } from "./hooks/useApiHook";
 import VideoPlayer from "./components/VideoPlayer";
-import { GlobalDataParsed } from "./types/global";
+import { DataItem } from "./types/global";
+import { INITIAL_LOCATION } from "./constants";
 
 function App() {
   const initialStateCountry = {
-    name: "Global Recommendations",
+    name: INITIAL_LOCATION,
     available: true,
   };
   const now = new Date();
@@ -56,14 +57,20 @@ function App() {
   const [content, setContent] = useState("");
   const [countryInfo, setCountryInfo] = useState(initialStateCountry);
   const [dates, setDates] = useState([defaultBegin, todayEnd]);
-  const [dataClicked, setDataClicked] = useState<GlobalDataParsed>(
+  const [dataClicked, setDataClicked] = useState<DataItem>(
     InitialDataClickedObject
   );
   const [loading, setLoading] = useState<Boolean>(false);
   const VIDEOS_REQUESTED = 30;
   let globalResponse: TApiResponse = InitialApiResponse;
+  let topByCountry: TApiResponse = InitialApiResponse;
+
   globalResponse = useApiGet(
     `https://ttgo.trex.zone/foryourecommendations/global?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}`,
+    dates
+  );
+  topByCountry = useApiGet(
+    `https://ttgo.trex.zone/foryourecommendations/topByCountry?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}`,
     dates
   );
 
@@ -80,7 +87,7 @@ function App() {
 
   const handleClickSidebarItem = (
     e: React.MouseEvent,
-    dataClicked: GlobalDataParsed
+    dataClicked: DataItem
   ) => {
     setDataClicked(dataClicked);
   };
@@ -102,6 +109,7 @@ function App() {
             onClickedCountry={setCountryInfo}
             countryInfo={countryInfo}
             countriesClickedGlobal={dataClicked.countries}
+            clearCountriesGlobal={clearCountryInfo}
           />
 
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
@@ -120,6 +128,7 @@ function App() {
           cleanSelection={
             dataClicked.videoId === InitialDataClickedObject.videoId
           }
+          topByCountryData={topByCountry.data}
         />
       </main>
     </div>

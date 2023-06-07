@@ -1,13 +1,10 @@
-import { GlobalDataParsed } from "../types/global";
+import { DataItem } from "../types/global";
 import styles from "../styles/sidebarListModuleItem.module.css";
 import Accordion from "./Accordion";
 
 interface ItemInterface {
-  globalDataItem: GlobalDataParsed;
-  handleClickSidebarItem: (
-    e: React.MouseEvent,
-    dataClicked: GlobalDataParsed
-  ) => void;
+  globalDataItem: DataItem;
+  handleClickSidebarItem: (e: React.MouseEvent, dataClicked: DataItem) => void;
   active: Boolean;
 }
 
@@ -17,9 +14,8 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
     globalDataItem.countries && globalDataItem.countries.length;
   const listOfCountries = isThereCountries ? (
     <ul>
-      {globalDataItem.countryNames!.map((country) => (
-        <li>{country}</li>
-      ))}
+      {globalDataItem.countryNames &&
+        globalDataItem.countryNames.map((country) => <li>{country}</li>)}
     </ul>
   ) : (
     "no data"
@@ -28,7 +24,9 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
   return (
     <div
       className={`${styles.container} ${active ? styles.active : ""}`}
-      onClick={(e) => handleClickSidebarItem(e, globalDataItem)}
+      onClick={(e) =>
+        isThereCountries ? handleClickSidebarItem(e, globalDataItem) : () => {}
+      }
       id={globalDataItem.videoId as string}
     >
       <ul>
@@ -64,15 +62,17 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
           <strong>Video Id:</strong>
           {globalDataItem.videoId ? globalDataItem.videoId : "no data"}
         </li>
-        <li key="countries">
-          <div className={styles.accordion}>
-            <Accordion
-              title={"Countries"}
-              content={listOfCountries}
-              customClass={styles["fromCountries"]}
-            />
-          </div>
-        </li>
+        {isThereCountries && (
+          <li key="countries">
+            <div className={styles.accordion}>
+              <Accordion
+                title={"Countries"}
+                content={listOfCountries}
+                customClass={styles["fromCountries"]}
+              />
+            </div>
+          </li>
+        )}
       </ul>
     </div>
   );

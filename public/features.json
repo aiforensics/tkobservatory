@@ -1246,7 +1246,7 @@
             [[-144, 702, -142, 703]]
           ],
           "id": "USA",
-          "properties": { "name": "United States", "available": true }
+          "properties": { "name": "United States of America", "available": true }
         },
         {
           "type": "Polygon",
