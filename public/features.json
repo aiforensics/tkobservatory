@@ -286,7 +286,7 @@
             ]
           ],
           "id": "COD",
-          "properties": { "name": "Democratic Republic of Congo", "available": true }
+          "properties": { "name": "Congo (Democratic Republic of)", "available": true }
         },
         {
           "type": "Polygon",

@@ -55,6 +55,8 @@ const SideBar: React.FC<CountryInfo> = ({
       return dates.toLocaleDateString();
     });
 
+  // console.log("globalCountryCodes---", globalCountryCodes);
+
   useEffect(() => {
     const parsedGlobalData: GlobalDataParsed[] =
       globalData &&

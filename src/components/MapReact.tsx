@@ -35,8 +35,6 @@ const MapChart = ({
   const [center, setCenter] = useState(initialZoomCoor.coord);
   const [zoom, setZoom] = useState(initialZoomCoor.zoom);
   const [country, setCountry] = useState("");
-  let zoomVar: number;
-  let centerVar: number[];
 
   const width = window.innerWidth * 0.7;
   const height = 600;
@@ -63,15 +61,13 @@ const MapChart = ({
 
   const countryClicked = (props: any) => {
     clearCountriesGlobal();
-    setCenter(centerVar);
-    setZoom(zoomVar);
     setCountry(props.name);
     onClickedCountry(props);
   };
 
   const saveMapView = (center: any, zoom: any) => {
-    centerVar = center;
-    zoomVar = zoom;
+    setCenter(center);
+    setZoom(zoom);
   };
 
   return (
