@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "../styles/sidebar.module.css";
 import SidebarListModule from "./SidebarListModule";
 import {
@@ -44,6 +44,8 @@ const SideBar: React.FC<CountryInfo> = ({
     occurrencies: 0,
     videoId: "",
   };
+
+  const divRef = useRef<HTMLDivElement>(null);
   const [parsedData, setParsedData] = useState<
     GlobalDataParsed[] | TopByCountryData[]
   >([InitialDataClickedObject]);
@@ -81,7 +83,7 @@ const SideBar: React.FC<CountryInfo> = ({
   }, [name, topByCountryData, globalCountryCodes, globalData]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={divRef}>
       <h2>{name}</h2>
       {dates && (
         <h3>
@@ -93,6 +95,7 @@ const SideBar: React.FC<CountryInfo> = ({
           parsedData={parsedData}
           handleClickSidebarItem={handleClickSidebarItem}
           cleanSelection={cleanSelection}
+          parentDiv={divRef.current}
         />
       ) : (
         "Retrieving data..."
