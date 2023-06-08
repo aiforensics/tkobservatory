@@ -1143,7 +1143,7 @@
           "type": "Polygon",
           "arcs": [[668, -368]],
           "id": "TLS",
-          "properties": { "name": "Timor", "available": true }
+          "properties": { "name": "Timor-Leste", "available": true }
         },
         {
           "type": "Polygon",
