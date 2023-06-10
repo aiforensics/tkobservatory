@@ -1,18 +1,24 @@
-import { DataItem } from "../types/global";
+import { GlobalDataParsed, TopByCountryData } from "../types/global";
 import styles from "../styles/sidebarListModuleItem.module.css";
 import Accordion from "./Accordion";
 
-interface ItemInterface {
-  globalDataItem: DataItem;
-  handleClickSidebarItem: (e: React.MouseEvent, dataClicked: DataItem) => void;
+interface SidebarListModuleItemProps {
+  globalDataItem: GlobalDataParsed | TopByCountryData;
+  handleClickSidebarItem: (
+    e: React.MouseEvent,
+    dataClicked: GlobalDataParsed | TopByCountryData
+  ) => void;
   active: Boolean;
+  isGlobalDataItem: Boolean;
 }
 
-const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
-  const { globalDataItem, handleClickSidebarItem, active } = props;
-  const isThereCountries =
-    globalDataItem.countries && globalDataItem.countries.length;
-  const listOfCountries = isThereCountries ? (
+const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
+  props
+): JSX.Element => {
+  const { globalDataItem, handleClickSidebarItem, active, isGlobalDataItem } =
+    props;
+
+  const listOfCountries = isGlobalDataItem ? (
     <ul>
       {globalDataItem.countryNames &&
         globalDataItem.countryNames.map((country) => <li>{country}</li>)}
@@ -21,11 +27,16 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
     "no data"
   );
 
+  const dateFormat = (date: string) => {
+    const formattedData = new Date(date).toLocaleString();
+    return formattedData;
+  };
+
   return (
     <div
       className={`${styles.container} ${active ? styles.active : ""}`}
       onClick={(e) =>
-        isThereCountries ? handleClickSidebarItem(e, globalDataItem) : () => {}
+        isGlobalDataItem ? handleClickSidebarItem(e, globalDataItem) : () => {}
       }
       id={globalDataItem.videoId as string}
     >
@@ -38,9 +49,38 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
           <strong>Author Name:</strong>
           {globalDataItem.authorName ? globalDataItem.authorName : "no data"}
         </li>
+        {isGlobalDataItem && (
+          <li key="comments">
+            <strong>Comments:</strong>
+            {globalDataItem.comments ? globalDataItem.comments : "no data"}
+          </li>
+        )}
+
+        {isGlobalDataItem && (
+          <li key="Likes">
+            <strong>Likes:</strong>
+            {globalDataItem.likes ? globalDataItem.likes : "no data"}
+          </li>
+        )}
+        {isGlobalDataItem && (
+          <li key="Shares">
+            <strong>Shares:</strong>
+            {globalDataItem.shares ? globalDataItem.shares : "no data"}
+          </li>
+        )}
+        {isGlobalDataItem && (
+          <li key="Sampling Time">
+            <strong>Sampling Time:</strong>
+            {globalDataItem.samplingTime
+              ? dateFormat(globalDataItem.samplingTime)
+              : "no data"}
+          </li>
+        )}
         <li key="createTime">
           <strong>Created Time:</strong>
-          {globalDataItem.createTime ? globalDataItem.createTime : "no data"}
+          {globalDataItem.createTime
+            ? dateFormat(globalDataItem.createTime)
+            : "no data"}
         </li>
         <li key="description">
           <strong>Description:</strong>
@@ -62,7 +102,7 @@ const SidebarListModuleItem: React.FC<ItemInterface> = (props): JSX.Element => {
           <strong>Video Id:</strong>
           {globalDataItem.videoId ? globalDataItem.videoId : "no data"}
         </li>
-        {isThereCountries && (
+        {isGlobalDataItem && (
           <li key="countries">
             <div className={styles.accordion}>
               <Accordion

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import SidebarListModuleItem from "./SidebarListModuleItem";
 import { GlobalDataParsed, TopByCountryData, DataItem } from "../types/global";
 
-type Props = {
+type SidebarListModuleProps = {
   parsedData: GlobalDataParsed[] | TopByCountryData[];
   cleanSelection: Boolean;
   parentDiv: null | HTMLDivElement;
@@ -15,7 +15,7 @@ const SidebarListModule = ({
   handleClickSidebarItem,
   cleanSelection,
   parentDiv,
-}: Props) => {
+}: SidebarListModuleProps) => {
   const [activeItem, setActiveItem] = useState("");
   const [resultsShown, setResultsShown] = useState(10);
   const handleShowMore = () => {
@@ -33,6 +33,12 @@ const SidebarListModule = ({
     setActiveItem(e.currentTarget.id);
     handleClickSidebarItem(e, dataClicked);
   };
+
+  const isGlobalData =
+    parsedData && parsedData.length
+      ? !parsedData[0].hasOwnProperty("countryCode")
+      : false;
+
   return (
     <div>
       <ul>
@@ -45,6 +51,7 @@ const SidebarListModule = ({
                 active={
                   cleanSelection ? false : activeItem === globalDataItem.videoId
                 }
+                isGlobalDataItem={isGlobalData}
               />
             </li>
           ))}

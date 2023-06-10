@@ -6,11 +6,12 @@ import {
   CountryCodes,
   GlobalDataParsed,
   TopByCountryData,
+  TopByCountryDataParsed,
   DataItem,
 } from "../types/global";
 import { INITIAL_LOCATION } from "./../constants";
 
-interface CountryInfo {
+interface SidebarProps {
   name: String;
   dates: Date[];
   globalData: GlobalData[];
@@ -21,7 +22,7 @@ interface CountryInfo {
   handleClickSidebarItem: (e: React.MouseEvent, dataClicked: DataItem) => void;
 }
 
-const SideBar: React.FC<CountryInfo> = ({
+const SideBar: React.FC<SidebarProps> = ({
   name,
   dates,
   globalData,
@@ -30,32 +31,16 @@ const SideBar: React.FC<CountryInfo> = ({
   cleanSelection,
   topByCountryData,
   handleClickSidebarItem,
-}: CountryInfo): JSX.Element => {
-  const InitialDataClickedObject = {
-    authorId: "",
-    authorName: "",
-    countries: [],
-    countryNames: [],
-    createTime: "",
-    description: "",
-    musicAuthor: "",
-    musicId: "",
-    musicTitle: "",
-    occurrencies: 0,
-    videoId: "",
-  };
-
+}: SidebarProps): JSX.Element => {
   const divRef = useRef<HTMLDivElement>(null);
   const [parsedData, setParsedData] = useState<
-    GlobalDataParsed[] | TopByCountryData[]
-  >([InitialDataClickedObject]);
+    GlobalDataParsed[] | TopByCountryDataParsed[]
+  >([]);
   const formatDates =
     dates &&
     dates.map((dates) => {
       return dates.toLocaleDateString();
     });
-
-  // console.log("globalCountryCodes---", globalCountryCodes);
 
   useEffect(() => {
     const parsedGlobalData: GlobalDataParsed[] =
@@ -71,16 +56,19 @@ const SideBar: React.FC<CountryInfo> = ({
           });
         return { ...data, countryNames: arrayCountriesParsed };
       });
+
     if (name === INITIAL_LOCATION) {
       setParsedData(parsedGlobalData);
     }
+
     if (name !== INITIAL_LOCATION) {
       const index = globalCountryCodes.findIndex((x) => x.name === name);
       const threeLetter = globalCountryCodes[index].three;
-      const parsedTopByCountryData = topByCountryData.filter((data) => {
-        return data.countryCode === threeLetter;
-      });
-      setParsedData(parsedTopByCountryData);
+      const parsedTopByCountryData: TopByCountryData[] =
+        topByCountryData.filter((data) => {
+          return { ...data, countryCode: threeLetter };
+        });
+      setParsedData(parsedTopByCountryData as TopByCountryDataParsed[]);
     }
   }, [name, topByCountryData, globalCountryCodes, globalData]);
 
@@ -100,7 +88,7 @@ const SideBar: React.FC<CountryInfo> = ({
           parentDiv={divRef.current}
         />
       ) : (
-        "Retrieving data..."
+        "Retrieving data, please be patient..."
       )}
     </div>
   );
