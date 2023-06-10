@@ -7,7 +7,6 @@ import {
   GlobalDataParsed,
   TopByCountryData,
   TopByCountryDataParsed,
-  DataItem,
 } from "../types/global";
 import { INITIAL_LOCATION } from "./../constants";
 
@@ -19,7 +18,10 @@ interface SidebarProps {
   isLoadingData: Boolean;
   cleanSelection: Boolean;
   topByCountryData: TopByCountryData[];
-  handleClickSidebarItem: (e: React.MouseEvent, dataClicked: DataItem) => void;
+  handleClickSidebarItem: (
+    e: React.MouseEvent,
+    dataClicked: GlobalDataParsed
+  ) => void;
 }
 
 const SideBar: React.FC<SidebarProps> = ({

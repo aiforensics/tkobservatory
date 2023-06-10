@@ -105,6 +105,7 @@ const MapChart = ({
                   const isClicked = country === geo.properties.name;
 
                   const foundcountriesClickedGlobalFound =
+                    countriesClickedGlobal &&
                     countriesClickedGlobal.find((element: string) => {
                       if (element === geo.id) {
                       }

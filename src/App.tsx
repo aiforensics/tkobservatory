@@ -8,7 +8,7 @@ import ResetButton from "./components/ResetButton";
 import { DateRange } from "./components/DateRange";
 import { useApiGet, TApiResponse } from "./hooks/useApiHook";
 import VideoPlayer from "./components/VideoPlayer";
-import { DataItem } from "./types/global";
+import { GlobalDataParsed } from "./types/global";
 import { INITIAL_LOCATION } from "./constants";
 
 function App() {
@@ -40,25 +40,11 @@ function App() {
     loading: true,
   };
 
-  const InitialDataClickedObject = {
-    authorId: "",
-    authorName: "",
-    countries: [],
-    countryNames: [],
-    createTime: "",
-    description: "",
-    musicAuthor: "",
-    musicId: "",
-    musicTitle: "",
-    occurrencies: 0,
-    videoId: "",
-  };
-
   const [content, setContent] = useState("");
   const [countryInfo, setCountryInfo] = useState(initialStateCountry);
   const [dates, setDates] = useState([defaultBegin, todayEnd]);
-  const [dataClicked, setDataClicked] = useState<DataItem>(
-    InitialDataClickedObject
+  const [dataClicked, setDataClicked] = useState<GlobalDataParsed>(
+    {} as GlobalDataParsed
   );
   const [loading, setLoading] = useState<Boolean>(false);
   const VIDEOS_REQUESTED = 30;
@@ -82,12 +68,12 @@ function App() {
 
   const clearCountryInfo = () => {
     setCountryInfo(initialStateCountry);
-    setDataClicked(InitialDataClickedObject);
+    setDataClicked({} as GlobalDataParsed);
   };
 
   const handleClickSidebarItem = (
     e: React.MouseEvent,
-    dataClicked: DataItem
+    dataClicked: GlobalDataParsed
   ) => {
     setDataClicked(dataClicked);
   };
@@ -125,9 +111,7 @@ function App() {
             handleClickSidebarItem(e, dataClicked)
           }
           globalCountryCodes={globalCountryCodes.data}
-          cleanSelection={
-            dataClicked.videoId === InitialDataClickedObject.videoId
-          }
+          cleanSelection={dataClicked.videoId === ""}
           topByCountryData={topByCountry.data}
         />
       </main>
