@@ -11,8 +11,9 @@
 
 .container ul li{
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .active{
-  background-color: yellow;
+  box-sizing: border-box;
 }

@@ -1,8 +1,7 @@
 .container{
   width: 30vw;
-  background-color: aquamarine;
-  border-left: 1px solid red;
   border: 1px solid;
+  border-left: none;
   height: calc(100vh - 62px);
   overflow: scroll;
 }

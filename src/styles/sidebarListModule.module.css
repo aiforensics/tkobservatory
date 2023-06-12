@@ -1,0 +1,14 @@
+.container_list{
+  list-style: none;
+  padding: 10px;
+}
+.container_list_item{
+  padding: 10px;
+  
+}
+
+.container_list_item > div{
+  padding: 10px;
+  margin: 0;
+  border-radius: 3px;
+}

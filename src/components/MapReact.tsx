@@ -40,8 +40,8 @@ const MapChart = ({
   const height = 600;
   let projection;
   projection = geoAugust()
-    .translate([width / 2, height / 2])
-    .scale(140);
+    .translate([width / 2, height / 2.8])
+    .scale(130);
 
   useEffect(() => {
     csv(`/countries.csv`).then((data: any) => {
@@ -95,7 +95,7 @@ const MapChart = ({
           }}
         >
           {data && data.length > 0 && (
-            <Geographies geography={geoUrl} strokeWidth={0.5} stroke="#9cd2ff">
+            <Geographies geography={geoUrl} strokeWidth={1} stroke="#000">
               {({ geographies }: any) =>
                 geographies.length &&
                 geographies.map((geo: any) => {
@@ -127,10 +127,10 @@ const MapChart = ({
                         !availableCountry
                           ? "url('#lines')"
                           : foundcountriesClickedGlobalFound
-                          ? "#FF0000"
+                          ? "#511281"
                           : isClicked
                           ? "#ffdd19"
-                          : "#06F"
+                          : "#FFF"
                       }
                       style={{
                         // default: {

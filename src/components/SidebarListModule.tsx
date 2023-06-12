@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import SidebarListModuleItem from "./SidebarListModuleItem";
 import { GlobalDataParsed, TopByCountryData } from "../types/global";
+import styles from "../styles/sidebarListModule.module.css";
 
 type SidebarListModuleProps = {
   parsedData: GlobalDataParsed[] | TopByCountryData[];
@@ -46,11 +47,11 @@ const SidebarListModule = ({
       : false;
 
   return (
-    <div>
-      <ul>
+    <div className={styles.container}>
+      <ul className={styles.container_list}>
         {parsedData &&
           parsedData.slice(0, resultsShown).map((globalDataItem, i) => (
-            <li key={i}>
+            <li className={styles.container_list_item} key={i}>
               <SidebarListModuleItem
                 globalDataItem={globalDataItem}
                 handleClickSidebarItem={handleHighlight}
