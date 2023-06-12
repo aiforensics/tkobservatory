@@ -5,10 +5,16 @@
 .appHeader{
   height: 60px;
   max-height: 60px;
-  display: block;
-  display: flex;
   align-items: center;
   justify-content: center;
+  display: flex;
+}
+.aiflogo{
+height: 30px;
+position: absolute;
+left: 40px;
+opacity: .4;
+bottom: 40px;
 }
 .appHeader h2{
   margin: 0;

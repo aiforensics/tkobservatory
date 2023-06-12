@@ -10,6 +10,7 @@ import { useApiGet, TApiResponse } from "./hooks/useApiHook";
 import VideoPlayer from "./components/VideoPlayer";
 import { GlobalDataParsed } from "./types/global";
 import { INITIAL_LOCATION } from "./constants";
+import aiflogo from "./assets/aif-logo.svg";
 
 function App() {
   const initialStateCountry = {
@@ -101,6 +102,7 @@ function App() {
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
           {/* {dataClicked.authorId && <VideoPlayer videoData={dataClicked} />} */}
           <ResetButton unclickCountries={clearCountryInfo} />
+          <img src={aiflogo} className={styles.aiflogo} alt="aif-logo" />
         </div>
         <SideBar
           {...countryInfo}
