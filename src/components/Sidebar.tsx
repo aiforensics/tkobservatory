@@ -67,6 +67,7 @@ const SideBar: React.FC<SidebarProps> = ({
       const index = globalCountryCodes.findIndex((x) => x.name === name);
       const threeLetter = globalCountryCodes[index].three;
       const parsedTopByCountryData: TopByCountryData[] =
+        topByCountryData &&
         topByCountryData.filter((data) => {
           return { ...data, countryCode: threeLetter };
         });
