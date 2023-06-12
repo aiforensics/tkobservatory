@@ -63,7 +63,11 @@ const SidebarListModule = ({
             </li>
           ))}
       </ul>
-      {resultsShown < 30 && <button onClick={handleShowMore}>show more</button>}
+      {resultsShown < 30 && (
+        <button className={styles.showmoreButton} onClick={handleShowMore}>
+          show more
+        </button>
+      )}
     </div>
   );
 };
