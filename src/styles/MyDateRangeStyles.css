@@ -1,0 +1,15 @@
+.react-daterange-picker__wrapper{
+  border-radius: 3px;
+  border-radius: 3px;
+  padding: 5px 10px;
+  min-width: 300px;
+  cursor: pointer;
+}
+
+.react-daterange-picker__calendar{
+  width: 100%;
+}
+
+.react-daterange-picker__button{
+  display: none;
+}
