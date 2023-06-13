@@ -29,6 +29,7 @@ export interface TopByCountryData extends DataBasis {
   countryNames: never;
   shares: never;
   samplingTime: never;
+  countryCode: string;
 }
 export interface TopByCountryDataParsed extends TopByCountryData {
   countryCode: String;

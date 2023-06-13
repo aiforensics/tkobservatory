@@ -40,7 +40,7 @@ const MapChart = ({
   const height = 600;
   let projection;
   projection = geoAugust()
-    .translate([width / 2, height / 2.8])
+    .translate([width / 2, height / 2])
     .scale(130);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const MapChart = ({
       <ComposableMap
         projection={projection}
         projectionConfig={{
-          scale: 100,
+          scale: 130,
         }}
       >
         <PatternLines
@@ -127,7 +127,7 @@ const MapChart = ({
                         !availableCountry
                           ? "url('#lines')"
                           : foundcountriesClickedGlobalFound
-                          ? "#511281"
+                          ? "#945cb4"
                           : isClicked
                           ? "#ffdd19"
                           : "#FFF"

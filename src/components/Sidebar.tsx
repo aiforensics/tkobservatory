@@ -69,7 +69,7 @@ const SideBar: React.FC<SidebarProps> = ({
       const parsedTopByCountryData: TopByCountryData[] =
         topByCountryData &&
         topByCountryData.filter((data) => {
-          return { ...data, countryCode: threeLetter };
+          return data.countryCode === threeLetter;
         });
       setParsedData(parsedTopByCountryData as TopByCountryDataParsed[]);
     }
