@@ -8,7 +8,7 @@ export const DateRange = ({ todayEnd, dates, setDates }: any) => {
   return (
     <DateRangePicker
       className={styles.dateRange}
-      onChange={(val: Date[]) => setDates(val)}
+      onChange={(val) => setDates(val)}
       value={dates}
       maxDate={todayEnd}
     />
