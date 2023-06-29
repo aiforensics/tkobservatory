@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./App.module.css";
+import Header from "./components/Header";
 import MapReact from "./components/MapReact";
 import { Tooltip } from "react-tooltip";
 import SideBar from "./components/Sidebar";
@@ -81,9 +82,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <header className={styles.appHeader}>
-        <h2>TikTok Global Observatory</h2>
-      </header>
+      <Header />
       <main className={styles.maincontainer}>
         <div
           className={styles.mapcontainer}

@@ -2,13 +2,6 @@
   text-align: center;
 }
 
-.appHeader{
-  height: 60px;
-  max-height: 60px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
 .aiflogo{
 height: 30px;
 position: absolute;

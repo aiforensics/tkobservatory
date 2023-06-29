@@ -8,7 +8,7 @@ import {
   TopByCountryData,
   TopByCountryDataParsed,
 } from "../types/global";
-import { INITIAL_LOCATION } from "./../constants";
+import { INITIAL_LOCATION, CLICKED_LOCATION } from "./../constants";
 
 interface SidebarProps {
   name: String;
@@ -77,7 +77,7 @@ const SideBar: React.FC<SidebarProps> = ({
 
   return (
     <div className={styles.container} ref={divRef}>
-      <h2>{name}</h2>
+      <h2>{name === INITIAL_LOCATION ? name : CLICKED_LOCATION + name}</h2>
       {dates && (
         <h3>
           {formatDates[0]} - {formatDates[1]}
@@ -91,7 +91,7 @@ const SideBar: React.FC<SidebarProps> = ({
           parentDiv={divRef.current}
         />
       ) : (
-        "Retrieving data, please be patient..."
+        "Retrieving data, one moment please..."
       )}
     </div>
   );

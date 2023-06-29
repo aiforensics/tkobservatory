@@ -1,9 +1,15 @@
+.calendarContainer h3{
+  color: black;
+  font-size: 12px;
+  text-transform: uppercase;
+  display: inline-block;
+}
 .dateRange{
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 3px;
-  top: 20px;
+  top: 35px;
   cursor: pointer;
   background-color: white;
 }

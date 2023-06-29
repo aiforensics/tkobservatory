@@ -6,11 +6,14 @@ import styles from "../styles/dateRange.module.css";
 
 export const DateRange = ({ todayEnd, dates, setDates }: any) => {
   return (
-    <DateRangePicker
-      className={styles.dateRange}
-      onChange={(val) => setDates(val)}
-      value={dates}
-      maxDate={todayEnd}
-    />
+    <div className={styles.calendarContainer}>
+      <h3>Choose Timeframe</h3>
+      <DateRangePicker
+        className={styles.dateRange}
+        onChange={(val) => setDates(val)}
+        value={dates}
+        maxDate={todayEnd}
+      />
+    </div>
   );
 };
