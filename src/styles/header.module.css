@@ -7,17 +7,23 @@
   margin: 0 auto;
 }
 
-.appHeader h2,
-.appHeader a{ margin-left: auto;}
-
-.appHeader a{
+.appHeader .readmeLink{
   margin-right: 20px;
   font-size: 14px;
   color: black;
   text-decoration: none;
   font-weight: bold;
   color: rgb(148, 92, 180);
+  margin-left: auto;
 }
-.appHeader a:hover{
+.appHeader .readmeLink:hover{
   text-decoration: underline;
+}
+
+.appHeader .imageLink{
+  margin-right: auto;
+}
+.appHeader img{
+  height: 24px;
+  margin-left: 20px;
 }
