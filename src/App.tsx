@@ -79,6 +79,7 @@ function App() {
     setDataClicked(dataClicked);
   };
 
+  const userInteracted = Object.keys(dataClicked).length > 0;
   return (
     <div className={styles.app}>
       <Header />
@@ -99,7 +100,9 @@ function App() {
 
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
           {dataClicked.authorId && <VideoPlayer videoData={dataClicked} />}
-          <ResetButton unclickCountries={clearCountryInfo} />
+          {(userInteracted || countryInfo.name !== INITIAL_LOCATION) && (
+            <ResetButton unclickCountries={clearCountryInfo} />
+          )}
         </div>
         <SideBar
           {...countryInfo}
@@ -110,7 +113,7 @@ function App() {
             handleClickSidebarItem(e, dataClicked)
           }
           globalCountryCodes={globalCountryCodes.data}
-          cleanSelection={Object.keys(dataClicked).length === 0}
+          cleanSelection={!userInteracted}
           topByCountryData={topByCountry.data}
         />
       </main>
