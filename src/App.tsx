@@ -110,7 +110,7 @@ function App() {
             handleClickSidebarItem(e, dataClicked)
           }
           globalCountryCodes={globalCountryCodes.data}
-          cleanSelection={dataClicked.videoId === ""}
+          cleanSelection={Object.keys(dataClicked).length === 0}
           topByCountryData={topByCountry.data}
         />
       </main>
