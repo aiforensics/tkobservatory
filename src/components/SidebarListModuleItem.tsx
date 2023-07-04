@@ -36,10 +36,10 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
 
   return (
     <div
-      className={`${styles.container} ${active ? styles.active : ""}`}
-      onClick={(e) =>
-        isGlobalDataItem ? handleClickSidebarItem(e, globalDataItem) : () => {}
-      }
+      className={`${styles.container} ${
+        active ? (isGlobalDataItem ? styles.active : styles.coutryActive) : ""
+      }`}
+      onClick={(e) => handleClickSidebarItem(e, globalDataItem)}
       id={globalDataItem.videoId as string}
     >
       <ul>

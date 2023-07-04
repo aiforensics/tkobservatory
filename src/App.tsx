@@ -98,7 +98,7 @@ function App() {
           />
 
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
-          {/* {dataClicked.authorId && <VideoPlayer videoData={dataClicked} />} */}
+          {dataClicked.authorId && <VideoPlayer videoData={dataClicked} />}
           <ResetButton unclickCountries={clearCountryInfo} />
         </div>
         <SideBar

@@ -2,4 +2,16 @@
   position: absolute;
   bottom: 0;
   right: 0;
+  margin-right: -1px;
+}
+
+.container button {
+  border: none;
+  background: none;
+  font-weight: bold;
+  color: red;
+  cursor: pointer;
+  display: block;
+  float: right;
+  opacity: 0;
 }
