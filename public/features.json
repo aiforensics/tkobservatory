@@ -44,7 +44,7 @@
           "type": "Polygon",
           "arcs": [[36]],
           "id": "ATF",
-          "properties": { "name": "French Southern Territories", "available": true }
+          "properties": { "name": "French Southern Territories", "available": false }
         },
         {
           "type": "MultiPolygon",
