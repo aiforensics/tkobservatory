@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SidebarListModuleItem from "./SidebarListModuleItem";
 import { GlobalDataParsed, TopByCountryData } from "../types/global";
 import styles from "../styles/sidebarListModule.module.css";
@@ -6,7 +6,6 @@ import styles from "../styles/sidebarListModule.module.css";
 type SidebarListModuleProps = {
   parsedData: GlobalDataParsed[] | TopByCountryData[];
   cleanSelection: Boolean;
-  parentDiv: null | HTMLDivElement;
   handleClickSidebarItem: (
     e: React.MouseEvent,
     dataClicked: GlobalDataParsed
@@ -18,20 +17,19 @@ const SidebarListModule = ({
   parsedData,
   handleClickSidebarItem,
   cleanSelection,
-  parentDiv,
 }: SidebarListModuleProps) => {
   const [activeItem, setActiveItem] = useState("");
   const [resultsShown, setResultsShown] = useState(10);
   const handleShowMore = () => {
     setResultsShown(resultsShown + INITIAL_RESULTS);
   };
+  const ulRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     setResultsShown(INITIAL_RESULTS);
-    if (parentDiv) {
-      parentDiv.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [parsedData, parentDiv]);
+
+    ulRef!.current!.scrollIntoView({ behavior: "smooth" });
+  }, [parsedData]);
 
   const handleHighlight = (
     e: React.MouseEvent,
@@ -48,7 +46,7 @@ const SidebarListModule = ({
 
   return (
     <div className={styles.container}>
-      <ul className={styles.container_list}>
+      <ul className={styles.container_list} ref={ulRef}>
         {parsedData &&
           parsedData.slice(0, resultsShown).map((globalDataItem, i) => (
             <li className={styles.container_list_item} key={i}>

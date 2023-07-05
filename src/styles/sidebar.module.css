@@ -3,7 +3,10 @@
   border: 1px solid;
   border-left: none;
   height: calc(100vh - 62px);
-  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: space-between;
 }
 
 .downloadLink{
@@ -13,4 +16,9 @@
 
 .downloadLink:hover{
   text-decoration: underline;
+}
+
+.container .bottom{
+  max-height: 80%;
+  overflow: scroll;
 }

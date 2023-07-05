@@ -83,34 +83,37 @@ const SideBar: React.FC<SidebarProps> = ({
   }, [name, topByCountryData, globalCountryCodes, globalData, globalView]);
 
   return (
-    <div className={styles.container} ref={divRef}>
-      <h2>{globalView ? name : CLICKED_LOCATION + name}</h2>
-      {dates && (
-        <h3>
-          {formatDates[0]} - {formatDates[1]}
-        </h3>
-      )}
-      {!isLoadingData && (
-        <a
-          href={`${
-            globalView ? GLOBAL_RECOMMENDATIONS_API : TOP_COUNRTY_API
-          }?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}&format=csv`}
-          download="filename.csv"
-          className={styles.downloadLink}
-        >
-          Download CSV
-        </a>
-      )}
-      {!isLoadingData ? (
-        <SidebarListModule
-          parsedData={parsedData}
-          handleClickSidebarItem={handleClickSidebarItem}
-          cleanSelection={cleanSelection}
-          parentDiv={divRef.current}
-        />
-      ) : (
-        "Retrieving data, one moment please..."
-      )}
+    <div className={styles.container}>
+      <div className={styles.top}>
+        <h2>{globalView ? name : CLICKED_LOCATION + name}</h2>
+        {dates && (
+          <h3>
+            {formatDates[0]} - {formatDates[1]}
+          </h3>
+        )}
+        {!isLoadingData && (
+          <a
+            href={`${
+              globalView ? GLOBAL_RECOMMENDATIONS_API : TOP_COUNRTY_API
+            }?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}&format=csv`}
+            download="filename.csv"
+            className={styles.downloadLink}
+          >
+            Download CSV
+          </a>
+        )}
+      </div>
+      <div className={styles.bottom}>
+        {!isLoadingData ? (
+          <SidebarListModule
+            parsedData={parsedData}
+            handleClickSidebarItem={handleClickSidebarItem}
+            cleanSelection={cleanSelection}
+          />
+        ) : (
+          "Retrieving data, one moment please..."
+        )}
+      </div>
     </div>
   );
 };
