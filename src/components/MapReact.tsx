@@ -161,7 +161,11 @@ const MapChart = ({
                       }}
                       onMouseEnter={() => {
                         setTooltipContent(
-                          `${availableCountry ? geo.properties.name : ""}`
+                          `${
+                            availableCountry
+                              ? geo.properties.name
+                              : "data not available"
+                          }`
                         );
                       }}
                       onMouseLeave={() => {
