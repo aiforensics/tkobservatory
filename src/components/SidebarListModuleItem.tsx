@@ -43,10 +43,10 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
       id={globalDataItem.videoId as string}
     >
       <ul>
-        <li key={`authorId-${globalDataItem.authorId}`}>
+        {/* <li key={`authorId-${globalDataItem.authorId}`}>
           <strong>Author Id: </strong>
           {globalDataItem.authorId ? globalDataItem.authorId : "no data"}
-        </li>
+        </li> */}
         <li key={`authorName-${globalDataItem.authorId}`}>
           <strong>Author Name: </strong>
           {globalDataItem.authorName ? globalDataItem.authorName : "no data"}
@@ -70,14 +70,14 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
             {globalDataItem.shares ? globalDataItem.shares : "no data"}
           </li>
         )}
-        {isGlobalDataItem && (
+        {/* {isGlobalDataItem && (
           <li key={`samplingTime-${globalDataItem.authorId}`}>
             <strong>Sampling Time: </strong>
             {globalDataItem.samplingTime
               ? dateFormat(globalDataItem.samplingTime)
               : "no data"}
           </li>
-        )}
+        )} */}
         <li key={`createTime-${globalDataItem.authorId}`}>
           <strong>Created Time: </strong>
           {globalDataItem.createTime
@@ -88,22 +88,22 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
           <strong>Description: </strong>
           {globalDataItem.description ? globalDataItem.description : "no data"}
         </li>
-        <li key={`musicAuthor-${globalDataItem.authorId}`}>
+        {/* <li key={`musicAuthor-${globalDataItem.authorId}`}>
           <strong>Music Author: </strong>
           {globalDataItem.musicAuthor ? globalDataItem.musicAuthor : "no data"}
         </li>
         <li key={`musicId-${globalDataItem.authorId}`}>
           <strong>Music Id: </strong>
           {globalDataItem.musicId ? globalDataItem.musicId : "no data"}
-        </li>
+        </li> */}
         <li key={`musicTitle-${globalDataItem.authorId}`}>
           <strong>Music Title: </strong>
           {globalDataItem.musicTitle ? globalDataItem.musicTitle : "no data"}
         </li>
-        <li key={`videoId-${globalDataItem.authorId}`}>
+        {/* <li key={`videoId-${globalDataItem.authorId}`}>
           <strong>Video Id: </strong>
           {globalDataItem.videoId ? globalDataItem.videoId : "no data"}
-        </li>
+        </li> */}
         {isGlobalDataItem && (
           <li key={`countries-${globalDataItem.authorId}`}>
             <div className={styles.accordion}>
