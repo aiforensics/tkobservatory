@@ -10,7 +10,12 @@ import { DateRange } from "./components/DateRange";
 import { useApiGet, TApiResponse } from "./hooks/useApiHook";
 import VideoPlayer from "./components/VideoPlayer";
 import { GlobalDataParsed } from "./types/global";
-import { INITIAL_LOCATION } from "./constants";
+import {
+  INITIAL_LOCATION,
+  VIDEOS_REQUESTED,
+  GLOBAL_RECOMMENDATIONS_API,
+  TOP_COUNRTY_API,
+} from "./constants";
 
 function App() {
   const initialStateCountry = {
@@ -48,16 +53,15 @@ function App() {
     {} as GlobalDataParsed
   );
   const [loading, setLoading] = useState<Boolean>(false);
-  const VIDEOS_REQUESTED = 30;
   let globalResponse: TApiResponse = InitialApiResponse;
   let topByCountry: TApiResponse = InitialApiResponse;
 
   globalResponse = useApiGet(
-    `https://ttgo.trex.zone/foryourecommendations/global?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}`,
+    `${GLOBAL_RECOMMENDATIONS_API}?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}`,
     dates
   );
   topByCountry = useApiGet(
-    `https://ttgo.trex.zone/foryourecommendations/topByCountry?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}`,
+    `${TOP_COUNRTY_API}?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}`,
     dates
   );
 

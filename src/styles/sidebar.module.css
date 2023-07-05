@@ -5,3 +5,12 @@
   height: calc(100vh - 62px);
   overflow: scroll;
 }
+
+.downloadLink{
+  color: rgb(148, 92, 180);
+  text-decoration: none;
+}
+
+.downloadLink:hover{
+  text-decoration: underline;
+}
