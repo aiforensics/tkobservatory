@@ -10,6 +10,7 @@ import {
 import { geoPolyhedralWaterman, geoAugust } from "d3-geo-projection";
 import { PatternLines } from "@vx/pattern";
 import { INITIAL_LOCATION } from "./../constants";
+import MapControls from "./../components/MapControls";
 
 const geoUrl = "/features.json";
 
@@ -26,8 +27,8 @@ const MapChart = ({
 }: any) => {
   const initialZoomCoor = useMemo(() => {
     return {
-      coord: [30, 60],
-      zoom: 0.6,
+      coord: [0, 0],
+      zoom: 1,
     };
   }, []);
 
@@ -36,12 +37,7 @@ const MapChart = ({
   const [zoom, setZoom] = useState(initialZoomCoor.zoom);
   const [country, setCountry] = useState("");
 
-  const width = window.innerWidth * 0.7;
-  const height = 600;
-  let projection;
-  projection = geoAugust()
-    .translate([width / 2, height / 2])
-    .scale(130);
+  let projection = geoAugust().translate([400, 300]).scale(60);
 
   useEffect(() => {
     csv(`/countries.csv`).then((data: any) => {
@@ -66,12 +62,32 @@ const MapChart = ({
   };
 
   const saveMapView = (center: any, zoom: any) => {
+    console.log("saeeve");
     setCenter(center);
     setZoom(zoom);
   };
 
+  const handleZoomIn = () => {
+    var rect = document.querySelector(".rsm-svg rect");
+    var rectSize = rect!.getBoundingClientRect();
+    var event = new MouseEvent("dblclick", {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      clientX: rectSize.width / 2,
+      clientY: rectSize.height / 2,
+    });
+    rect!.dispatchEvent(event);
+  };
+
+  const handleZoomOut = () => {
+    if (zoom <= 1) return;
+    setZoom(zoom / 2);
+  };
+
   return (
     <>
+      <MapControls handleZoomIn={handleZoomIn} handleZoomOut={handleZoomOut} />
       <ComposableMap
         projection={projection}
         projectionConfig={{
@@ -88,6 +104,9 @@ const MapChart = ({
         />
         {/* <Sphere stroke="#ff5233" strokeWidth={0.1} /> */}
         <ZoomableGroup
+          filterZoomEvent={(evt: any) => {
+            return true;
+          }}
           center={center}
           zoom={zoom}
           onMoveEnd={({ coordinates, zoom }: any) => {
@@ -95,7 +114,7 @@ const MapChart = ({
           }}
         >
           {data && data.length > 0 && (
-            <Geographies geography={geoUrl} strokeWidth={1} stroke="#000">
+            <Geographies geography={geoUrl} strokeWidth={0.5} stroke="#000">
               {({ geographies }: any) =>
                 geographies.length &&
                 geographies.map((geo: any) => {
