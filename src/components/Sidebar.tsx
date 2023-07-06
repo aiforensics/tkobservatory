@@ -71,8 +71,8 @@ const SideBar: React.FC<SidebarProps> = ({
     }
 
     if (name !== INITIAL_LOCATION) {
-      const index = globalCountryCodes.findIndex((x) => x.name === name);
-      const threeLetter = globalCountryCodes[index].three;
+      let index = globalCountryCodes.findIndex((x) => x.name === name);
+      let threeLetter = globalCountryCodes[index].three;
       const parsedTopByCountryData: TopByCountryData[] =
         topByCountryData &&
         topByCountryData.filter((data) => {
@@ -81,6 +81,16 @@ const SideBar: React.FC<SidebarProps> = ({
       setParsedData(parsedTopByCountryData as TopByCountryDataParsed[]);
     }
   }, [name, topByCountryData, globalCountryCodes, globalData, globalView]);
+
+  /* this variables might be allocated with the clicked 
+   * country, and we need it to build the right CSV */
+  let threeLetter: String = "";
+  if (name !== INITIAL_LOCATION) {
+    /* I don't like to repeat this pattern, it should be a variable that moves along
+     * otherwise we need to keep to repeat the filtering */
+    threeLetter = 
+      globalCountryCodes.filter((x) => x.name === name)[0].three;
+  }
 
   return (
     <div className={styles.container}>
@@ -94,8 +104,9 @@ const SideBar: React.FC<SidebarProps> = ({
         {!isLoadingData && (
           <a
             href={`${
-              globalView ? GLOBAL_RECOMMENDATIONS_API : TOP_COUNRTY_API
-            }?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}&format=csv`}
+              globalView ? GLOBAL_RECOMMENDATIONS_API :
+              `https://ttgo.trex.zone/foryourecommendations/country/${threeLetter}`
+            }?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&format=csv`}
             download="filename.csv"
             className={styles.downloadLink}
           >
