@@ -1,0 +1,13 @@
+pipeline:
+  build:
+    image: node
+    commands:
+      - npm i
+      - npm run build
+      - mv -f build/* /site
+    volumes:
+      - /var/www/sites/ttgo.trex.zone:/site
+
+branches: 
+  - master
+  - testci
