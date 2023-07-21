@@ -7,7 +7,7 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 import { geoAugust } from "d3-geo-projection";
-import { PatternLines } from "@vx/pattern";
+import { PatternLines } from "@visx/pattern";
 import { INITIAL_LOCATION } from "./../constants";
 import MapControls from "./../components/MapControls";
 

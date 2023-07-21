@@ -32,7 +32,8 @@ export const useApiGet = (url: string, deps: any = null): TApiResponse => {
 
   useEffect(() => {
     getAPIData();
-  }, [deps, getAPIData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deps]);
 
   return { status, statusText, data, error, loading };
 };

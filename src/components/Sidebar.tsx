@@ -11,8 +11,6 @@ import {
 import {
   INITIAL_LOCATION,
   CLICKED_LOCATION,
-  VIDEOS_REQUESTED,
-  TOP_COUNRTY_API,
   GLOBAL_RECOMMENDATIONS_API,
 } from "./../constants";
 
@@ -81,14 +79,13 @@ const SideBar: React.FC<SidebarProps> = ({
     }
   }, [name, topByCountryData, globalCountryCodes, globalData, globalView]);
 
-  /* this variables might be allocated with the clicked 
+  /* this variables might be allocated with the clicked
    * country, and we need it to build the right CSV */
   let threeLetter: String = "";
   if (name !== INITIAL_LOCATION) {
     /* I don't like to repeat this pattern, it should be a variable that moves along
      * otherwise we need to keep to repeat the filtering */
-    threeLetter = 
-      globalCountryCodes.filter((x) => x.name === name)[0].three;
+    threeLetter = globalCountryCodes.filter((x) => x.name === name)[0].three;
   }
 
   return (
@@ -103,8 +100,9 @@ const SideBar: React.FC<SidebarProps> = ({
         {!isLoadingData && (
           <a
             href={`${
-              globalView ? GLOBAL_RECOMMENDATIONS_API :
-              `https://ttgo.trex.zone/foryourecommendations/country/${threeLetter}`
+              globalView
+                ? GLOBAL_RECOMMENDATIONS_API
+                : `https://ttgo.trex.zone/foryourecommendations/country/${threeLetter}`
             }?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&format=csv`}
             download="filename.csv"
             className={styles.downloadLink}
