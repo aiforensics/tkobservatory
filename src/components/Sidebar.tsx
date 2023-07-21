@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/sidebar.module.css";
 import SidebarListModule from "./SidebarListModule";
 import {
@@ -40,7 +40,6 @@ const SideBar: React.FC<SidebarProps> = ({
   topByCountryData,
   handleClickSidebarItem,
 }: SidebarProps): JSX.Element => {
-  const divRef = useRef<HTMLDivElement>(null);
   const [parsedData, setParsedData] = useState<
     GlobalDataParsed[] | TopByCountryDataParsed[]
   >([]);

@@ -1,22 +1,17 @@
 import { useEffect, useState, memo, useMemo } from "react";
 import { csv } from "d3-fetch";
-import { scaleLinear } from "d3-scale";
 import {
   ComposableMap,
   Geographies,
   Geography,
   ZoomableGroup,
 } from "react-simple-maps";
-import { geoPolyhedralWaterman, geoAugust } from "d3-geo-projection";
+import { geoAugust } from "d3-geo-projection";
 import { PatternLines } from "@vx/pattern";
 import { INITIAL_LOCATION } from "./../constants";
 import MapControls from "./../components/MapControls";
 
 const geoUrl = "/features.json";
-
-const colorScale = scaleLinear()
-  .domain([0.29, 0.68])
-  .range(["#ffedea", "#ff5233"]);
 
 const MapChart = ({
   setTooltipContent,
