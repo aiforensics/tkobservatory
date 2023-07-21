@@ -15,6 +15,7 @@ export const useApiGet = (url: string, deps: any = null): TApiResponse => {
   const [error, setError] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getAPIData = async () => {
     setLoading(true);
     try {
@@ -31,7 +32,7 @@ export const useApiGet = (url: string, deps: any = null): TApiResponse => {
 
   useEffect(() => {
     getAPIData();
-  }, [deps]);
+  }, [deps, getAPIData]);
 
   return { status, statusText, data, error, loading };
 };
