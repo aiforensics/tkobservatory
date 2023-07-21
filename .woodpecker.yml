@@ -9,4 +9,4 @@ pipeline:
       - /var/www/sites/ttgo.trex.zone:/site
 
 branches: 
-  - master
+  - main
