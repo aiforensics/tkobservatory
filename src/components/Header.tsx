@@ -1,5 +1,5 @@
 import styles from "../styles/header.module.css";
-import aiflogo from ".././assets/aif-logo.svg";
+import aiflogo from ".././assets/aif_new_logo_complete.svg";
 
 export interface HeaderProps {}
 

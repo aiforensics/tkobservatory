@@ -57,7 +57,6 @@ const MapChart = ({
   };
 
   const saveMapView = (center: any, zoom: any) => {
-    console.log("saeeve");
     setCenter(center);
     setZoom(zoom);
   };
