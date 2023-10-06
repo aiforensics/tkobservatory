@@ -19,6 +19,7 @@ const MapChart = ({
   countryInfo,
   countriesClickedGlobal,
   clearCountriesGlobal,
+  isSearching,
 }: any) => {
   const initialZoomCoor = useMemo(() => {
     return {
@@ -140,7 +141,9 @@ const MapChart = ({
                         !availableCountry
                           ? "url('#lines')"
                           : foundcountriesClickedGlobalFound
-                          ? "#945cb4"
+                          ? isSearching
+                            ? "#308c30"
+                            : "#945cb4"
                           : isClicked
                           ? "#ffdd19"
                           : "#FFF"

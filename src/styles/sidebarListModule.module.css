@@ -1,3 +1,6 @@
+.container{
+  position: relative;
+}
 .container_list{
   list-style: none;
   padding: 10px;
@@ -21,4 +24,10 @@
   text-transform: uppercase;
   cursor: pointer;
   margin-bottom: 20px;
+}
+
+.noresults{
+  color: red;
+  margin-top: 30%;
+  font-weight: bold;
 }

@@ -1,15 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import SidebarListModuleItem from "./SidebarListModuleItem";
-import { GlobalDataParsed, TopByCountryData } from "../types/global";
+import {
+  GlobalDataParsed,
+  TopByCountryData,
+  SearchDataParsed,
+} from "../types/global";
 import styles from "../styles/sidebarListModule.module.css";
 
 type SidebarListModuleProps = {
-  parsedData: GlobalDataParsed[] | TopByCountryData[];
+  parsedData: GlobalDataParsed[] | TopByCountryData[] | SearchDataParsed[];
   cleanSelection: Boolean;
   handleClickSidebarItem: (
     e: React.MouseEvent,
     dataClicked: GlobalDataParsed
   ) => void;
+  isSearching: boolean;
 };
 
 const INITIAL_RESULTS = 10;
@@ -17,6 +22,7 @@ const SidebarListModule = ({
   parsedData,
   handleClickSidebarItem,
   cleanSelection,
+  isSearching,
 }: SidebarListModuleProps) => {
   const [activeItem, setActiveItem] = useState("");
   const [resultsShown, setResultsShown] = useState(10);
@@ -27,8 +33,8 @@ const SidebarListModule = ({
 
   useEffect(() => {
     setResultsShown(INITIAL_RESULTS);
-
-    ulRef!.current!.scrollIntoView({ behavior: "smooth" });
+    if (parsedData?.length)
+      ulRef!.current!.scrollIntoView({ behavior: "smooth" });
   }, [parsedData]);
 
   const handleHighlight = (
@@ -46,11 +52,12 @@ const SidebarListModule = ({
 
   return (
     <div className={styles.container}>
-      <ul className={styles.container_list} ref={ulRef}>
-        {parsedData &&
-          parsedData.slice(0, resultsShown).map((globalDataItem, i) => (
+      {parsedData?.length ? (
+        <ul className={styles.container_list} ref={ulRef}>
+          {parsedData.slice(0, resultsShown).map((globalDataItem, i) => (
             <li className={styles.container_list_item} key={i}>
               <SidebarListModuleItem
+                isSearching={isSearching}
                 globalDataItem={globalDataItem}
                 handleClickSidebarItem={handleHighlight}
                 active={
@@ -60,12 +67,17 @@ const SidebarListModule = ({
               />
             </li>
           ))}
-      </ul>
-      {resultsShown < 30 && (
+        </ul>
+      ) : (
+        <div className={styles.noresults}>{`${
+          isSearching ? "No results for your search" : "No results"
+        }`}</div>
+      )}
+      {resultsShown < 30 && parsedData?.length ? (
         <button className={styles.showmoreButton} onClick={handleShowMore}>
           show more
         </button>
-      )}
+      ) : null}
     </div>
   );
 };

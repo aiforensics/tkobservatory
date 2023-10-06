@@ -1,15 +1,17 @@
+.calendarContainer{
+  display: flex;
+  flex-direction: column;
+}
 .calendarContainer h3{
   color: black;
   font-size: 12px;
   text-transform: uppercase;
   display: inline-block;
+  margin: 0;
+  margin-bottom: 10px;
 }
 .dateRange{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   border-radius: 3px;
-  top: 35px;
   cursor: pointer;
   background-color: white;
 }

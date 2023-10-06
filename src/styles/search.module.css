@@ -1,0 +1,119 @@
+.searchParentContainer{
+  position: relative;
+}
+.searchContainer{
+  display: flex;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  align-items: center;
+  position: relative;
+}
+.searchMainContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input{
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid;
+  border-radius: 0px;
+  margin-left: 10px;
+  width: 300px;
+}
+
+input:focus{
+  outline: none;
+}
+
+select{
+  background: none;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  height: 30px;
+  width: 140px;
+}
+select:has(option:disabled:checked) {
+  color: gray;
+}
+
+select:focus{
+  border: none;
+}
+
+.searchDeleteContainer{
+  position: relative;
+}
+
+.searchDeleteContainer button{
+  position: absolute;
+  right: 5px;
+  color: red;
+  opacity: .7;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  top: 1px;
+}
+
+.searchDeleteContainer button i:before{
+  padding-top: 3px;
+  display: block;
+}
+
+.searchButton{
+  margin-left: 10px;
+  cursor: pointer;
+  border: 1px solid #308c30;
+  color: #308c30;
+  border-radius: 3px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: #308c30;
+  color: white;
+}
+
+button[disabled]{
+  cursor: default;
+  background-color: inherit;
+  border: 1px solid #b7b7b7;
+  color: #b7b7b7;
+}
+
+.requestState{
+  color: #308c30;
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+}
+.focus{
+  border-color: #308c30;
+  box-shadow: 0px 0px 0px 1px #308c30;
+  box-sizing: border-box;
+}
+
+.cleanSearch{
+  background-color: transparent;
+  position: absolute;
+  left: 0;
+  bottom: -40px
+}
+
+.cleanSearch button{
+  margin-left: 0;
+  background: none;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-color: red;
+  color: red;
+}

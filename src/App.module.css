@@ -16,6 +16,13 @@ bottom: 40px;
   display: flex;
   flex-direction: row;
 }
+.datesearchContainer{
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+  height: 110px;
+  box-sizing: border-box;
+}
 .mapcontainer{
   border: 1px solid;
   width: 70vw;
@@ -27,7 +34,6 @@ bottom: 40px;
 .mapcontainer svg{
   height:100%;
   width: 100%;
-  margin-top: 50px;
 }
 
 .mapcontainer svg path:focus{

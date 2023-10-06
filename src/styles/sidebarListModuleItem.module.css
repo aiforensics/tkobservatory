@@ -24,3 +24,9 @@
   border: 2px solid #ffdd19;
   background-color: #fdf1ab;
 }
+
+.searchActive{
+  box-sizing: border-box;
+  border: 2px solid #308c30;
+  background-color: rgba(48, 140, 48, 0.24);
+}

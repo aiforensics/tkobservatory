@@ -21,7 +21,7 @@ export default function App(props: HeaderProps) {
         target="_blank"
         rel="noreferrer"
       >
-        README
+        ABOUT THE TOOL
       </a>
     </header>
   );

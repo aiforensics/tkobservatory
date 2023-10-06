@@ -18,6 +18,11 @@ export interface GlobalData extends DataBasis {
   shares: number;
 }
 
+export interface SearchDataParsed extends GlobalData {
+  views: number;
+  countryNames: Array<String>;
+}
+
 export interface GlobalDataParsed extends GlobalData {
   countryNames: Array<String>;
 }
@@ -42,3 +47,9 @@ export type CountryCodes = {
   three: String;
   two: String;
 };
+
+export interface searchResults {
+  searchKey: string;
+  data: SearchDataParsed[];
+  selected: string;
+}

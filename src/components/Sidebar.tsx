@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/sidebar.module.css";
 import SidebarListModule from "./SidebarListModule";
 import {
@@ -7,11 +7,14 @@ import {
   GlobalDataParsed,
   TopByCountryData,
   TopByCountryDataParsed,
+  searchResults,
+  SearchDataParsed,
 } from "../types/global";
 import {
   INITIAL_LOCATION,
   CLICKED_LOCATION,
   GLOBAL_RECOMMENDATIONS_API,
+  SEARCH_API,
 } from "./../constants";
 
 interface SidebarProps {
@@ -22,10 +25,12 @@ interface SidebarProps {
   isLoadingData: Boolean;
   cleanSelection: Boolean;
   topByCountryData: TopByCountryData[];
+  searchResults: searchResults;
   handleClickSidebarItem: (
     e: React.MouseEvent,
     dataClicked: GlobalDataParsed
   ) => void;
+  searchFocused: Boolean;
 }
 
 const SideBar: React.FC<SidebarProps> = ({
@@ -37,9 +42,10 @@ const SideBar: React.FC<SidebarProps> = ({
   cleanSelection,
   topByCountryData,
   handleClickSidebarItem,
+  searchResults,
 }: SidebarProps): JSX.Element => {
   const [parsedData, setParsedData] = useState<
-    GlobalDataParsed[] | TopByCountryDataParsed[]
+    GlobalDataParsed[] | TopByCountryDataParsed[] | SearchDataParsed[]
   >([]);
   const formatDates =
     dates &&
@@ -77,7 +83,18 @@ const SideBar: React.FC<SidebarProps> = ({
         });
       setParsedData(parsedTopByCountryData as TopByCountryDataParsed[]);
     }
-  }, [name, topByCountryData, globalCountryCodes, globalData, globalView]);
+
+    if (searchResults.searchKey) {
+      setParsedData(searchResults.data as SearchDataParsed[]);
+    }
+  }, [
+    name,
+    topByCountryData,
+    globalCountryCodes,
+    globalData,
+    globalView,
+    searchResults,
+  ]);
 
   /* this variables might be allocated with the clicked
    * country, and we need it to build the right CSV */
@@ -91,25 +108,42 @@ const SideBar: React.FC<SidebarProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <h2>{globalView ? name : CLICKED_LOCATION + name}</h2>
-        {dates && (
+        <h2>
+          {searchResults.searchKey
+            ? `SEARCH RESULTS for: ${searchResults.searchKey}`
+            : globalView
+            ? name
+            : CLICKED_LOCATION + name}
+        </h2>
+
+        {dates && !searchResults.searchKey && (
           <h3>
             {formatDates[0]} - {formatDates[1]}
           </h3>
         )}
-        {!isLoadingData && (
+        {!isLoadingData && parsedData?.length ? (
           <a
             href={`${
-              globalView
-                ? GLOBAL_RECOMMENDATIONS_API
-                : `https://ttgo.trex.zone/foryourecommendations/country/${threeLetter}`
-            }?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&format=csv`}
+              searchResults.searchKey
+                ? searchResults.selected === "description"
+                  ? `${SEARCH_API}/search?search=${searchResults.searchKey}&n=4000`
+                  : `${SEARCH_API}/match?key=${searchResults.selected}&value=${searchResults.searchKey}`
+                : globalView
+                ? `${GLOBAL_RECOMMENDATIONS_API}?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}`
+                : `https://ttgo.trex.zone/foryourecommendations/country/${threeLetter}?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}`
+            }&format=csv`}
             download="filename.csv"
-            className={styles.downloadLink}
+            className={`${styles.downloadLink} ${
+              searchResults.searchKey
+                ? styles.downloadSearch
+                : globalView
+                ? styles.downloadGlobal
+                : styles.donwloadCountry
+            }`}
           >
             Download CSV
           </a>
-        )}
+        ) : undefined}
       </div>
       <div className={styles.bottom}>
         {!isLoadingData ? (
@@ -117,6 +151,7 @@ const SideBar: React.FC<SidebarProps> = ({
             parsedData={parsedData}
             handleClickSidebarItem={handleClickSidebarItem}
             cleanSelection={cleanSelection}
+            isSearching={!!searchResults.searchKey}
           />
         ) : (
           "Retrieving data, one moment please..."
@@ -126,4 +161,4 @@ const SideBar: React.FC<SidebarProps> = ({
   );
 };
 
-export default SideBar;
+export default React.memo(SideBar);

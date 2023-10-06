@@ -1,22 +1,32 @@
-import { GlobalDataParsed, TopByCountryData } from "../types/global";
+import {
+  GlobalDataParsed,
+  TopByCountryData,
+  SearchDataParsed,
+} from "../types/global";
 import styles from "../styles/sidebarListModuleItem.module.css";
 import Accordion from "./Accordion";
 
 interface SidebarListModuleItemProps {
-  globalDataItem: GlobalDataParsed | TopByCountryData;
+  globalDataItem: GlobalDataParsed | TopByCountryData | SearchDataParsed;
   handleClickSidebarItem: (
     e: React.MouseEvent,
-    dataClicked: GlobalDataParsed | TopByCountryData
+    dataClicked: GlobalDataParsed | TopByCountryData | SearchDataParsed
   ) => void;
   active: Boolean;
   isGlobalDataItem: Boolean;
+  isSearching: Boolean;
 }
 
 const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
   props
 ): JSX.Element => {
-  const { globalDataItem, handleClickSidebarItem, active, isGlobalDataItem } =
-    props;
+  const {
+    globalDataItem,
+    handleClickSidebarItem,
+    active,
+    isGlobalDataItem,
+    isSearching,
+  } = props;
 
   const listOfCountries = isGlobalDataItem ? (
     <ul>
@@ -33,11 +43,16 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
     const formattedData = new Date(date).toLocaleString();
     return formattedData;
   };
-
   return (
     <div
       className={`${styles.container} ${
-        active ? (isGlobalDataItem ? styles.active : styles.coutryActive) : ""
+        active
+          ? isSearching
+            ? styles.searchActive
+            : isGlobalDataItem
+            ? styles.active
+            : styles.coutryActive
+          : ""
       }`}
       onClick={(e) => handleClickSidebarItem(e, globalDataItem)}
       id={globalDataItem.videoId as string}
