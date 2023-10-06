@@ -88,13 +88,10 @@ function App() {
   }, [initialStateCountry]);
 
   useEffect(() => {
-    if (searchFocused) clearCountryInfo();
+    if (searchFocused) {
+      clearCountryInfo();
+    }
   }, [searchFocused, clearCountryInfo]);
-
-  useEffect(() => {
-    if (searchResults.searchKey && countryInfo.name !== INITIAL_LOCATION)
-      cleanSearchResults();
-  }, [countryInfo, searchResults.searchKey]);
 
   const handleClickSidebarItem = (
     e: React.MouseEvent,
@@ -103,8 +100,19 @@ function App() {
     setDataClicked(dataClicked);
   };
 
-  const cleanSearchResults = () => {
+  const cleanSearchResults = useCallback(() => {
     setSearchResults({ searchKey: "", data: [], selected: "" });
+    setDataClicked({} as GlobalDataParsed);
+  }, []);
+
+  useEffect(() => {
+    if (searchResults.searchKey && countryInfo.name !== INITIAL_LOCATION) {
+      cleanSearchResults();
+    }
+  }, [countryInfo, searchResults.searchKey, cleanSearchResults]);
+
+  const handleCountryClick = (info: any) => {
+    setCountryInfo(info);
   };
 
   const userInteracted = Object.keys(dataClicked).length > 0;
@@ -129,7 +137,10 @@ function App() {
                 []
               )}
               imputFocused={searchFocused}
-              handleCleanSearch={useCallback(() => cleanSearchResults(), [])}
+              handleCleanSearch={useCallback(
+                () => cleanSearchResults(),
+                [cleanSearchResults]
+              )}
               isSearchKey={!!searchResults.searchKey}
             />
             {!searchFocused && !searchResults.searchKey && (
@@ -142,7 +153,7 @@ function App() {
           </div>
           <MapReact
             setTooltipContent={setContent}
-            onClickedCountry={setCountryInfo}
+            onClickedCountry={handleCountryClick}
             countryInfo={countryInfo}
             countriesClickedGlobal={dataClicked.countries}
             clearCountriesGlobal={clearCountryInfo}
