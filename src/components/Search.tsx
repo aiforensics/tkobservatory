@@ -42,7 +42,7 @@ const Search: React.FC<Props> = ({
   const submitHandler = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      setSearchKey(inputRef.current?.value!);
+      setSearchKey(encodeURIComponent(inputRef.current?.value!));
       setIsSearchInProcess(true);
       execute();
     },
@@ -152,12 +152,18 @@ const Search: React.FC<Props> = ({
           SEARCH
         </button>
         <div className={styles.requestState}>
-          {error ? "Something went wrong" : loading ? "Loading results..." : ""}
+          {error ? (
+            <span>Something went wrong</span>
+          ) : loading ? (
+            "Loading results..."
+          ) : (
+            ""
+          )}
         </div>
       </form>
-      {isSearchKey && !loading && (
+      {isSearchKey && !loading && !error && (
         <div className={styles.cleanSearch}>
-          <button onClick={handleCleanSearchData}>CLEAN SEARCH</button>
+          <button onClick={handleCleanSearchData}>CLEAR SEARCH</button>
         </div>
       )}
     </div>

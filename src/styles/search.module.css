@@ -93,6 +93,11 @@ button[disabled]{
   bottom: -30px;
   left: 0;
 }
+
+.requestState span{
+  color: red;
+}
+
 .focus{
   border-color: #308c30;
   box-shadow: 0px 0px 0px 1px #308c30;

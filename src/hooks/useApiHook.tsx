@@ -34,6 +34,7 @@ export const useApiGet = (
       setStatus(apiResponse.status);
       setStatusText(apiResponse.statusText);
       setData(json);
+      setError("");
     } catch (error) {
       setError(error);
     }

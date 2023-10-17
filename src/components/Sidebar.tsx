@@ -110,7 +110,9 @@ const SideBar: React.FC<SidebarProps> = ({
       <div className={styles.top}>
         <h2>
           {searchResults.searchKey
-            ? `SEARCH RESULTS for: ${searchResults.searchKey}`
+            ? `SEARCH RESULTS for:${decodeURIComponent(
+                searchResults.searchKey
+              )}`
             : globalView
             ? name
             : CLICKED_LOCATION + name}

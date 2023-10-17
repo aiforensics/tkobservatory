@@ -250,7 +250,7 @@
             ]
           ],
           "id": "CHN",
-          "properties": { "name": "China", "available": false }
+          "properties": { "name": "China", "available": false, "msg": "China has a national version of TikTok, Douyin. "}
         },
         {
           "type": "Polygon",
@@ -310,7 +310,7 @@
           "type": "Polygon",
           "arcs": [[239]],
           "id": "CUB",
-          "properties": { "name": "Cuba", "available": false }
+          "properties": { "name": "Cuba", "available": false, "msg": "Limited data collected." }
         },
         {
           "type": "Polygon",
@@ -396,7 +396,7 @@
             [288, 289, -274, -254, 290, 291, 292, 293, 294, 295, 296, 297, -277]
           ],
           "id": "ETH",
-          "properties": { "name": "Ethiopia", "available": false }
+          "properties": { "name": "Ethiopia", "available": false, "msg": "TikTok is banned in Ethiopia." }
         },
         {
           "type": "Polygon",
@@ -536,7 +536,7 @@
           "type": "Polygon",
           "arcs": [[-191, 382, -189, -117, -188, 383, -77, 384, 385]],
           "id": "IND",
-          "properties": { "name": "India", "available": false }
+          "properties": { "name": "India", "available": false, "msg": "TikTok is banned in India." }
         },
         {
           "type": "Polygon",
@@ -548,13 +548,13 @@
           "type": "Polygon",
           "arcs": [[387, -6, 388, 389, 390, 391, 392, -51, -34, -53, 393]],
           "id": "IRN",
-          "properties": { "name": "Iran", "available": false }
+          "properties": { "name": "Iran", "available": false, "msg": "TikTok is banned in Iran." }
         },
         {
           "type": "Polygon",
           "arcs": [[-391, 394, 395, 396, 397, 398, 399, 400]],
           "id": "IRQ",
-          "properties": { "name": "Iraq", "available": false }
+          "properties": { "name": "Iraq", "available": false, "msg": "Limited data collected." }
         },
         {
           "type": "Polygon",
@@ -572,7 +572,7 @@
           "type": "MultiPolygon",
           "arcs": [[[408]], [[409]], [[410, 411, -308, -168, -42]]],
           "id": "ITA",
-          "properties": { "name": "Italy", "available": false }
+          "properties": { "name": "Italy", "available": false, "msg": "TikTok can only be accessed by a logged-in user in Italy."}
         },
         {
           "type": "Polygon",
@@ -584,7 +584,7 @@
           "type": "Polygon",
           "arcs": [[-403, 413, -398, 414, 415, -405, 416]],
           "id": "JOR",
-          "properties": { "name": "Jordan", "available": false }
+          "properties": { "name": "Jordan", "available": false, "msg": "TikTok is banned in Jordan." }
         },
         {
           "type": "MultiPolygon",
@@ -662,7 +662,7 @@
           "type": "Polygon",
           "arcs": [[-407, 457, 458]],
           "id": "LBN",
-          "properties": { "name": "Lebanon", "available": false }
+          "properties": { "name": "Lebanon", "available": false, "msg": "Limited data collected." }
         },
         {
           "type": "Polygon",
@@ -844,7 +844,7 @@
           "type": "MultiPolygon",
           "arcs": [[[541, 542, -22, 543]], [[-20, 544]]],
           "id": "OMN",
-          "properties": { "name": "Oman", "available": false }
+          "properties": { "name": "Oman", "available": false, "msg": "Limited data collected." }
         },
         {
           "type": "Polygon",
@@ -900,7 +900,7 @@
           "type": "Polygon",
           "arcs": [[565, -447, 566, -183]],
           "id": "PRK",
-          "properties": { "name": "North Korea", "available": false }
+          "properties": { "name": "North Korea", "available": false, "msg": "TikTok is banned in North Korea." }
         },
         {
           "type": "Polygon",
@@ -1015,7 +1015,7 @@
           "type": "Polygon",
           "arcs": [[-475, -264, -511, 622]],
           "id": "ESH",
-          "properties": { "name": "Western Sahara", "available": false }
+          "properties": { "name": "Western Sahara", "available": false, "msg": "Limited data collected." }
         },
         {
           "type": "Polygon",
@@ -1029,7 +1029,7 @@
             [627, 628, -124, 629, -465, -271, 630, -279, 631, -298, 632]
           ],
           "id": "SDN",
-          "properties": { "name": "Sudan", "available": false }
+          "properties": { "name": "Sudan", "available": false, "msg": "Limited data collected." }
         },
         {
           "type": "Polygon",
@@ -1047,7 +1047,7 @@
           "type": "MultiPolygon",
           "arcs": [[[639]], [[640]], [[641]], [[642]], [[643]]],
           "id": "SLB",
-          "properties": { "name": "Solomon Islands", "available": false }
+          "properties": { "name": "Solomon Islands", "available": false, "msg": "Limited data collected." }
         },
         {
           "type": "Polygon",
@@ -1107,7 +1107,7 @@
           "type": "Polygon",
           "arcs": [[-414, -408, -459, 657, 658, -399]],
           "id": "SYR",
-          "properties": { "name": "Syria", "available": false }
+          "properties": { "name": "Syria", "available": false, "msg": "Limited data collected." }
         },
         {
           "type": "Polygon",
@@ -1252,7 +1252,7 @@
           "type": "Polygon",
           "arcs": [[-668, -421, -441, -666, -2]],
           "id": "UZB",
-          "properties": { "name": "Uzbekistan", "available": false }
+          "properties": { "name": "Uzbekistan", "available": false, "msg": "Limited data collected."}
         },
         {
           "type": "Polygon",
@@ -1264,7 +1264,7 @@
           "type": "Polygon",
           "arcs": [[705, -444, -457, -185]],
           "id": "VNM",
-          "properties": { "name": "Vietnam", "available": true }
+          "properties": { "name": "Viet Nam", "available": true }
         },
         {
           "type": "MultiPolygon",
@@ -1276,7 +1276,7 @@
           "type": "Polygon",
           "arcs": [[-417, -404]],
           "id": "PSX",
-          "properties": { "name": "West Bank", "available": true }
+          "properties": { "name": "West Bank", "available": false }
         },
         {
           "type": "Polygon",
@@ -1363,7 +1363,7 @@
           "type": "Polygon",
           "arcs": [[736]],
           "id": "NRU",
-          "properties": { "name": "Nauru", "available": false }
+          "properties": { "name": "Nauru", "available": false, "msg": "Limited data collected." }
         },
         {
           "type": "Polygon",
@@ -1401,7 +1401,7 @@
             [[750]]
           ],
           "id": "TUV",
-          "properties": { "name": "Tuvalu", "available": false }
+          "properties": { "name": "Tuvalu", "available": false, "msg": "Limited data collected." }
         },
         {
           "type": "MultiPolygon",

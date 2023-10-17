@@ -161,7 +161,9 @@ const MapChart = ({
                           `${
                             availableCountry
                               ? geo.properties.name
-                              : "data not available"
+                              : geo.properties.msg
+                              ? geo.properties.msg
+                              : "Data not available"
                           }`
                         );
                       }}
