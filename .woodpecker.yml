@@ -1,4 +1,9 @@
-pipeline:
+when:
+  event: push
+  branch:
+    - master
+    
+steps:
   build:
     image: node
     commands:
@@ -8,5 +13,4 @@ pipeline:
     volumes:
       - /var/www/sites/ttgo.trex.zone:/site
 
-branches: 
-  - main
+
