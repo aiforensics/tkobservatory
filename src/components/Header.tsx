@@ -17,7 +17,7 @@ export default function App(props: HeaderProps) {
       <h2>TikTok Global Observatory</h2>
       <a
         className={styles.readmeLink}
-        href="https://ttgo.trex.zone/docs"
+        href="hhttps://tkgo.aiforensics.org/docs/"
         target="_blank"
         rel="noreferrer"
       >
