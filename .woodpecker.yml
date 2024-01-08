@@ -12,4 +12,3 @@ steps:
       - cp -r build/* /site
     volumes:
       - /var/www/sites/ttgo.trex.zone:/site
-
