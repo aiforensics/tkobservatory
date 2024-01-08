@@ -1,7 +1,11 @@
 when:
-  event: push
-  branch:
-    - master
+  - event:
+      - push
+      - tag
+      - deployment
+      - cron
+    branch:
+      - main
     
 steps:
   build:
