@@ -62,27 +62,29 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
           <strong>Author Id: </strong>
           {globalDataItem.authorId ? globalDataItem.authorId : "no data"}
         </li> */}
-        <li key={`authorName-${globalDataItem.authorId}`}>
-          <strong>Author Name: </strong>
-          {globalDataItem.authorName ? globalDataItem.authorName : "no data"}
-        </li>
+        {globalDataItem.authorName ? (
+          <li key={`authorName-${globalDataItem.authorId}`}>
+            <strong>Author Name: </strong>
+            <span>{`${globalDataItem.authorName || "no data"}`}</span>
+          </li>
+        ) : null}
         {isGlobalDataItem && (
           <li key={`comments-${globalDataItem.authorId}`}>
             <strong>Comments: </strong>
-            {globalDataItem.comments ? globalDataItem.comments : "no data"}
+            <span>{`${globalDataItem.comments || "no data"}`}</span>
           </li>
         )}
 
         {isGlobalDataItem && (
           <li key={`likes-${globalDataItem.authorId}`}>
             <strong>Likes: </strong>
-            {globalDataItem.likes ? globalDataItem.likes : "no data"}
+            <span>{`${globalDataItem.likes || "no data"}`}</span>
           </li>
         )}
         {isGlobalDataItem && (
           <li key={`shares-${globalDataItem.authorId}`}>
             <strong>Shares: </strong>
-            {globalDataItem.shares ? globalDataItem.shares : "no data"}
+            <span>{`${globalDataItem.shares || "no data"}`}</span>
           </li>
         )}
         {/* {isGlobalDataItem && (
@@ -95,13 +97,15 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
         )} */}
         <li key={`createTime-${globalDataItem.authorId}`}>
           <strong>Created Time: </strong>
-          {globalDataItem.createTime
-            ? dateFormat(globalDataItem.createTime)
-            : "no data"}
+          <span>{`${
+            globalDataItem.createTime
+              ? dateFormat(globalDataItem.createTime)
+              : "no data"
+          }`}</span>
         </li>
         <li key={`description-${globalDataItem.authorId}`}>
           <strong>Description: </strong>
-          {globalDataItem.description ? globalDataItem.description : "no data"}
+          <span>{`${globalDataItem.description || "no data"}`}</span>
         </li>
         {/* <li key={`musicAuthor-${globalDataItem.authorId}`}>
           <strong>Music Author: </strong>
@@ -113,7 +117,7 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
         </li> */}
         <li key={`musicTitle-${globalDataItem.authorId}`}>
           <strong>Music Title: </strong>
-          {globalDataItem.musicTitle ? globalDataItem.musicTitle : "no data"}
+          <span>{`${globalDataItem.musicTitle || "no data"}`}</span>
         </li>
         {/* <li key={`videoId-${globalDataItem.authorId}`}>
           <strong>Video Id: </strong>
