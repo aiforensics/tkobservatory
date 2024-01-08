@@ -43,6 +43,12 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
     const formattedData = new Date(date).toLocaleString();
     return formattedData;
   };
+
+  const authorNameParsed = globalDataItem.authorName
+    ? typeof globalDataItem.authorName === "object"
+      ? globalDataItem.authorName.nickname
+      : globalDataItem.authorName
+    : "no data";
   return (
     <div
       className={`${styles.container} ${
@@ -65,7 +71,7 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
         {globalDataItem.authorName ? (
           <li key={`authorName-${globalDataItem.authorId}`}>
             <strong>Author Name: </strong>
-            <span>{`${globalDataItem.authorName || "no data"}`}</span>
+            <span>{`${authorNameParsed}`}</span>
           </li>
         ) : null}
         {isGlobalDataItem && (

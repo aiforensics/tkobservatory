@@ -1,6 +1,6 @@
 interface DataBasis {
   authorId: String;
-  authorName: String;
+  authorName: any;
   createTime: string;
   description: String;
   musicAuthor: String;
