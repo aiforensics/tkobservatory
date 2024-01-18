@@ -39,17 +39,14 @@ export interface TopByCountryData extends DataBasis {
 export interface TopByCountryDataParsed extends TopByCountryData {
   countryCode: String;
 }
-
-type DateWithNewMember<T> = Partial<T> & { newMember: boolean };
-
-export type CountryCodes = {
-  name: String;
-  three: String;
-  two: String;
-};
-
 export interface searchResults {
   searchKey: string;
   data: SearchDataParsed[];
   selected: string;
+}
+
+export interface clickedCountryType {
+  name: string | undefined;
+  available: boolean;
+  id: string | undefined;
 }

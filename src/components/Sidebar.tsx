@@ -3,12 +3,12 @@ import styles from "../styles/sidebar.module.css";
 import SidebarListModule from "./SidebarListModule";
 import {
   GlobalData,
-  CountryCodes,
   GlobalDataParsed,
   TopByCountryData,
   TopByCountryDataParsed,
   searchResults,
   SearchDataParsed,
+  clickedCountryType,
 } from "../types/global";
 import {
   INITIAL_LOCATION,
@@ -18,10 +18,9 @@ import {
 } from "./../constants";
 
 interface SidebarProps {
-  name: String;
+  selectedCountry: clickedCountryType;
   dates: Date[];
   globalData: GlobalData[];
-  globalCountryCodes: CountryCodes[];
   isLoadingData: Boolean;
   cleanSelection: Boolean;
   topByCountryData: TopByCountryData[];
@@ -34,11 +33,10 @@ interface SidebarProps {
 }
 
 const SideBar: React.FC<SidebarProps> = ({
-  name,
+  selectedCountry,
   dates,
   globalData,
   isLoadingData,
-  globalCountryCodes,
   cleanSelection,
   topByCountryData,
   handleClickSidebarItem,
@@ -53,33 +51,16 @@ const SideBar: React.FC<SidebarProps> = ({
       return dates.toLocaleDateString();
     });
 
-  const globalView = name === INITIAL_LOCATION;
+  const globalView = !selectedCountry.name;
+
   useEffect(() => {
-    const parsedGlobalData: GlobalDataParsed[] =
-      globalData &&
-      globalData.map((data) => {
-        const arrayCountriesParsed =
-          data &&
-          data.countries.map((country) => {
-            const index =
-              globalCountryCodes &&
-              globalCountryCodes.findIndex((x) => x.three === country);
-            return globalCountryCodes && globalCountryCodes[index].name;
-          });
-        return { ...data, countryNames: arrayCountriesParsed };
-      });
-
     if (globalView) {
-      setParsedData(parsedGlobalData);
-    }
-
-    if (name !== INITIAL_LOCATION) {
-      let index = globalCountryCodes.findIndex((x) => x.name === name);
-      let threeLetter = globalCountryCodes[index].three;
+      setParsedData(globalData as GlobalDataParsed[]);
+    } else {
       const parsedTopByCountryData: TopByCountryData[] =
         topByCountryData &&
         topByCountryData.filter((data) => {
-          return data.countryCode === threeLetter;
+          return data.countryCode === selectedCountry.id;
         });
       setParsedData(parsedTopByCountryData as TopByCountryDataParsed[]);
     }
@@ -88,22 +69,12 @@ const SideBar: React.FC<SidebarProps> = ({
       setParsedData(searchResults.data as SearchDataParsed[]);
     }
   }, [
-    name,
-    topByCountryData,
-    globalCountryCodes,
-    globalData,
-    globalView,
     searchResults,
+    globalData,
+    topByCountryData,
+    globalView,
+    selectedCountry,
   ]);
-
-  /* this variables might be allocated with the clicked
-   * country, and we need it to build the right CSV */
-  let threeLetter: String = "";
-  if (name !== INITIAL_LOCATION) {
-    /* I don't like to repeat this pattern, it should be a variable that moves along
-     * otherwise we need to keep to repeat the filtering */
-    threeLetter = globalCountryCodes.filter((x) => x.name === name)[0].three;
-  }
 
   return (
     <div className={styles.container}>
@@ -114,8 +85,8 @@ const SideBar: React.FC<SidebarProps> = ({
                 searchResults.searchKey
               )}`
             : globalView
-            ? name
-            : CLICKED_LOCATION + name}
+            ? INITIAL_LOCATION
+            : CLICKED_LOCATION + selectedCountry.name}
         </h2>
 
         {dates && !searchResults.searchKey && (
@@ -132,7 +103,9 @@ const SideBar: React.FC<SidebarProps> = ({
                   : `${SEARCH_API}/match?key=${searchResults.selected}&value=${searchResults.searchKey}`
                 : globalView
                 ? `${GLOBAL_RECOMMENDATIONS_API}?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}`
-                : `https://ttgo.trex.zone/foryourecommendations/country/${threeLetter}?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}`
+                : `https://ttgo.trex.zone/foryourecommendations/country/${
+                    selectedCountry.id
+                  }?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}`
             }&format=csv`}
             download="filename.csv"
             className={`${styles.downloadLink} ${

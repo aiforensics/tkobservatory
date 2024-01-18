@@ -7,46 +7,30 @@ import SideBar from "./components/Sidebar";
 import "react-tooltip/dist/react-tooltip.css";
 import ResetButton from "./components/ResetButton";
 import { DateRange } from "./components/DateRange";
-import { useApiGet, TApiResponse } from "./hooks/useApiHook";
+import { TApiResponse } from "./hooks/useApiHook";
 import VideoPlayer from "./components/VideoPlayer";
 import Search from "./components/Search";
-import { GlobalDataParsed, searchResults } from "./types/global";
 import {
-  INITIAL_LOCATION,
-  VIDEOS_REQUESTED,
-  GLOBAL_RECOMMENDATIONS_API,
-  TOP_COUNRTY_API,
-} from "./constants";
+  GlobalDataParsed,
+  searchResults,
+  clickedCountryType,
+} from "./types/global";
+import { INITIAL_LOCATION, INITIAL_DATES } from "./constants";
+import {
+  useAPIGetTopByCountry,
+  useAPIGetGlobalRecommendations,
+} from "./apiService";
 
 function App() {
-  const initialStateCountry = useMemo(() => {
-    return { name: INITIAL_LOCATION, available: true };
+  const [dates, setDates] = useState<Date[]>(INITIAL_DATES);
+
+  // API calls
+  let topByCountryResults: TApiResponse = useAPIGetTopByCountry(dates);
+  let globalResults: TApiResponse = useAPIGetGlobalRecommendations(dates);
+
+  const noCountrySelected = useMemo(() => {
+    return { name: undefined, available: true, id: undefined };
   }, []);
-
-  const now = new Date();
-  const defaultBegin = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate() - 14
-  );
-  const todayEnd = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate(),
-    23,
-    59,
-    59,
-    999
-  );
-
-  const InitialApiResponse = {
-    status: 0,
-    statusText: "String",
-    data: [],
-    error: [],
-    loading: true,
-    execute: () => {},
-  };
 
   const InitialSearchResults = {
     searchKey: "",
@@ -55,37 +39,27 @@ function App() {
   };
 
   const [content, setContent] = useState("");
-  const [countryInfo, setCountryInfo] = useState(initialStateCountry);
-  const [dates, setDates] = useState([defaultBegin, todayEnd]);
+  const [selectedCountry, setSelectedCountry] =
+    useState<clickedCountryType>(noCountrySelected);
   const [dataClicked, setDataClicked] = useState<GlobalDataParsed>(
     {} as GlobalDataParsed
   );
+
   const [loading, setLoading] = useState<Boolean>(false);
-  let globalResponse: TApiResponse = InitialApiResponse;
-  let topByCountry: TApiResponse = InitialApiResponse;
+
   const [searchResults, setSearchResults] =
     useState<searchResults>(InitialSearchResults);
   const [searchFocused, setSearchFocused] = useState(false);
 
-  globalResponse = useApiGet(
-    `${GLOBAL_RECOMMENDATIONS_API}?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}`,
-    dates
-  );
-  topByCountry = useApiGet(
-    `${TOP_COUNRTY_API}?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}`,
-    dates
-  );
-
-  const globalCountryCodes = useApiGet("https://ttgo.trex.zone/api/world");
-
   useEffect(() => {
-    setLoading(globalResponse.loading);
-  }, [globalResponse.loading]);
+    setLoading(globalResults.loading);
+  }, [globalResults.loading]);
 
+  // Clears country + Sidebar when: RESET MAP/NEW COUNTRY/SEARCH is clicked
   const clearCountryInfo = useCallback(() => {
-    setCountryInfo(initialStateCountry);
+    setSelectedCountry(noCountrySelected);
     setDataClicked({} as GlobalDataParsed);
-  }, [initialStateCountry]);
+  }, [noCountrySelected]);
 
   useEffect(() => {
     if (searchFocused) {
@@ -106,13 +80,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (searchResults.searchKey && countryInfo.name !== INITIAL_LOCATION) {
+    if (searchResults.searchKey && selectedCountry.name !== INITIAL_LOCATION) {
       cleanSearchResults();
     }
-  }, [countryInfo, searchResults.searchKey, cleanSearchResults]);
+  }, [selectedCountry, searchResults.searchKey, cleanSearchResults]);
 
-  const handleCountryClick = (info: any) => {
-    setCountryInfo(info);
+  const handleCountryClick = (clickedCountry: clickedCountryType) => {
+    setSelectedCountry(clickedCountry);
   };
 
   const userInteracted = Object.keys(dataClicked).length > 0;
@@ -144,17 +118,13 @@ function App() {
               isSearchKey={!!searchResults.searchKey}
             />
             {!searchFocused && !searchResults.searchKey && (
-              <DateRange
-                todayEnd={todayEnd}
-                setDates={setDates}
-                dates={dates}
-              />
+              <DateRange setDates={setDates} dates={dates} />
             )}
           </div>
           <MapReact
             setTooltipContent={setContent}
             onClickedCountry={handleCountryClick}
-            countryInfo={countryInfo}
+            countryInfo={selectedCountry}
             countriesClickedGlobal={dataClicked.countries}
             clearCountriesGlobal={clearCountryInfo}
             isSearching={!!searchResults.searchKey}
@@ -162,23 +132,22 @@ function App() {
 
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
           {dataClicked.authorId && <VideoPlayer videoData={dataClicked} />}
-          {(userInteracted || countryInfo.name !== INITIAL_LOCATION) &&
+          {(userInteracted || selectedCountry.name !== INITIAL_LOCATION) &&
             !searchResults.searchKey && (
               <ResetButton unclickCountries={clearCountryInfo} />
             )}
         </div>
         <SideBar
-          {...countryInfo}
+          selectedCountry={selectedCountry}
           dates={dates}
-          globalData={globalResponse.data}
+          globalData={globalResults.data}
           isLoadingData={loading}
           handleClickSidebarItem={useCallback(
             (e, dataClicked) => handleClickSidebarItem(e, dataClicked),
             []
           )}
-          globalCountryCodes={globalCountryCodes.data}
           cleanSelection={!userInteracted}
-          topByCountryData={topByCountry.data}
+          topByCountryData={topByCountryResults.data}
           searchResults={searchResults}
           searchFocused={searchFocused}
         />

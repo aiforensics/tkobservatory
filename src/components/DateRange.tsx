@@ -4,7 +4,17 @@ import "react-calendar/dist/Calendar.css";
 import "../styles/MyDateRangeStyles.css";
 import styles from "../styles/dateRange.module.css";
 
-export const DateRange = ({ todayEnd, dates, setDates }: any) => {
+export const DateRange = ({ dates, setDates }: any) => {
+  const now = new Date();
+  const defaultEnd = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    23,
+    59,
+    59,
+    999
+  );
   return (
     <div className={styles.calendarContainer}>
       <h3>Choose Timeframe</h3>
@@ -12,7 +22,7 @@ export const DateRange = ({ todayEnd, dates, setDates }: any) => {
         className={styles.dateRange}
         onChange={(val) => setDates(val)}
         value={dates}
-        maxDate={todayEnd}
+        maxDate={defaultEnd}
       />
     </div>
   );

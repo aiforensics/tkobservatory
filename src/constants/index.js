@@ -7,3 +7,8 @@ export const GLOBAL_RECOMMENDATIONS_API =
 export const TOP_COUNRTY_API =
   "https://ttgo.trex.zone/foryourecommendations/topByCountry";
 export const SEARCH_API = "https://ttgo.trex.zone/foryourecommendations";
+const now = new Date();
+export const INITIAL_DATES = [
+  new Date(now.getFullYear(), now.getMonth(), now.getDate() - 14),
+  new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999),
+];
