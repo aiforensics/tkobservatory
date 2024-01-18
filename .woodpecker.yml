@@ -1,7 +1,11 @@
 when:
-  event: push
-  branch:
-    - master
+  - event:
+      - push
+      - tag
+      - deployment
+      - cron
+    branch:
+      - main
     
 steps:
   build:
@@ -12,5 +16,3 @@ steps:
       - cp -r build/* /site
     volumes:
       - /var/www/sites/ttgo.trex.zone:/site
-
-
