@@ -6,7 +6,6 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
-import { SEARCH_API } from "../constants";
 import { useApiGet } from "../hooks/useApiHook";
 import { searchResults } from "../types/global";
 
@@ -33,8 +32,8 @@ const Search: React.FC<Props> = ({
 
   const { loading, error, data, status, execute } = useApiGet(
     selected !== undefined && selected === "description"
-      ? `${SEARCH_API}/search?search=${searchKey}&n=4000`
-      : `${SEARCH_API}/match?key=${selected}&value=${searchKey}`,
+      ? `${process.env.REACT_APP_SEARCH_API}/search?search=${searchKey}&n=4000`
+      : `${process.env.REACT_APP_SEARCH_API}/match?key=${selected}&value=${searchKey}`,
     null,
     true
   );

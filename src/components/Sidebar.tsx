@@ -10,12 +10,7 @@ import {
   SearchDataParsed,
   clickedCountryType,
 } from "../types/global";
-import {
-  INITIAL_LOCATION,
-  CLICKED_LOCATION,
-  GLOBAL_RECOMMENDATIONS_API,
-  SEARCH_API,
-} from "./../constants";
+import { INITIAL_LOCATION, CLICKED_LOCATION } from "./../constants";
 
 interface SidebarProps {
   selectedCountry: clickedCountryType;
@@ -99,10 +94,12 @@ const SideBar: React.FC<SidebarProps> = ({
             href={`${
               searchResults.searchKey
                 ? searchResults.selected === "description"
-                  ? `${SEARCH_API}/search?search=${searchResults.searchKey}&n=4000`
-                  : `${SEARCH_API}/match?key=${searchResults.selected}&value=${searchResults.searchKey}`
+                  ? `${process.env.REACT_APP_SEARCH_API}/search?search=${searchResults.searchKey}&n=4000`
+                  : `${process.env.REACT_APP_SEARCH_API}/match?key=${searchResults.selected}&value=${searchResults.searchKey}`
                 : globalView
-                ? `${GLOBAL_RECOMMENDATIONS_API}?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}`
+                ? `${
+                    process.env.REACT_APP_GLOBAL_RECOMMENDATIONS_API
+                  }?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}`
                 : `https://ttgo.trex.zone/foryourecommendations/country/${
                     selectedCountry.id
                   }?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}`
