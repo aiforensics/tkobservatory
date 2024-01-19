@@ -1,0 +1,70 @@
+// colors
+$color-dark: #0C2729;
+$color-light: #FFFFFF;
+$color-sunrise: #7A85E9;
+$color-sunlight: #FBCE54;
+$color-sunset: #FB8154;
+$color-body: #566D6F;
+$color-success: #4BB543;
+
+// shades
+$shade-dark100: #6D7D7F;
+$shade-dark300: #3D5254;
+$shade-dark500: $color-dark;
+$shade-dark700: #081B1D;
+$shade-dark900: #000000;
+
+$shade-light500: $color-light;
+$shade-light700: #CCCCCC;
+$shade-light900: #999999;
+
+$shade-sunrise100: #E3E7FB;
+$shade-sunrise300: #AAB6F2;
+$shade-sunrise500: $color-sunrise;
+$shade-sunrise700: #5A6ABA;
+$shade-sunrise900: #44508C;
+
+$shade-sunlight100: #FEF5DD;
+$shade-sunlight300: #FDE298;
+$shade-sunlight500: $color-sunlight;
+$shade-sunlight700: #C9A543;
+$shade-sunlight900: #977C32;
+
+$shade-sunset100: #FEE6DD;
+$shade-sunset300: #FDB398;
+$shade-sunset500: $color-sunset;
+$shade-sunset700: #C96743;
+$shade-sunset900: #C96743;
+
+// tokens
+$token-body-subdued: $shade-dark100;
+$token-body-default: $shade-dark300;
+$token-body-emphase: $shade-dark500;
+
+$token-title-default: $shade-dark500;
+$token-title-emphase: $shade-sunrise500;
+$token-title-hover: $shade-sunset500;
+$token-title-active: $shade-sunlight500;
+
+$token-link-default: $shade-light500;
+$token-link-subdued: $shade-sunrise300;
+$token-link-hover: $shade-sunset100;
+$token-link-active: $shade-sunlight100;
+$token-link-disabled: $shade-light700;
+
+$token-surface-default: $shade-light500;
+$token-surface-strong: $shade-dark500;
+$token-surface-emphase: $shade-sunrise500;
+$token-surface-hover: $shade-sunset500;
+$token-surface-active: $shade-sunlight700;
+$token-surface-disabled: $shade-dark100;
+
+$token-border-default: $shade-dark100;
+$token-border-strong: $shade-dark500;
+$token-border-subdued: $shade-sunrise300;
+$token-border-hover: $shade-sunset300;
+$token-border-active: $shade-sunlight300;
+$token-border-disabled: $shade-light900;
+
+//underlight
+$color-underlight: radial-gradient(50% 100% at 50% 0%, #FB8154 0%, #FBCE54 50.14%, rgba(255, 255, 255, 0) 100%);

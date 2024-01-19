@@ -1,0 +1,55 @@
+@import '../../styles/global.scss';
+.link {
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  padding: $spacing-xxs $spacing-sm;
+  color: $color-dark;
+  user-select: none;
+  font-family: $title-font-family;
+  display: inline-block;
+  &.-light{
+    color: $color-light;
+    &:after {
+      background-color: $color-light;
+    }
+  }
+  &.md{
+    font-size: $label-font-size-md;
+    padding: $spacing-xxs 0;
+  }
+  &.sm {
+    font-size: $label-font-size-sm;
+    padding: 2px $spacing-sm 2px 0;
+  }
+  // &:after { 
+  //   content: "";
+  //   height: 1px;
+  //   width: 100%;
+  //   position: absolute;
+  //   display: block;
+  //   bottom: 0;
+  //   background-color: $color-dark;
+  // }
+  &:hover, &.-beinghovered{
+    color: $color-sunset;
+    &:after {
+      background-color: $color-sunset;
+    }
+  }
+  &.-navlink-active,
+  &:active{
+    color: $color-sunlight;
+    &:after {
+      background-color: $color-sunlight;
+    }
+  }
+  &.disabled{
+    cursor: default;
+    pointer-events: none;
+    color: $token-link-disabled;
+     &:after {
+      background-color: $token-link-disabled;
+    }
+  }
+}

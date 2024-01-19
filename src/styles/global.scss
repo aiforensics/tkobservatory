@@ -1,0 +1,75 @@
+@import './colors.scss';
+@import './spaces.scss';
+@import './fonts.scss';
+@import './typography.scss';
+
+body {
+  background-color: white;
+}
+
+#page-container{
+  position: relative;
+  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
+}
+
+#content-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: calc(100vh - $footer-height - $navbar-height);
+  width: 100%;
+  padding: $padding-mobile;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  @media only screen and (min-width: $responsive-large-desktop) {
+    padding: $padding-desktop;
+    margin: 0 auto;
+    max-width: calc($responsive-large-desktop + 2 * $spacing-large-screen);
+    overflow: visible;
+  }
+}
+
+.-section-container{
+  margin-top: calc($spacing-2xl - $title-line-height);
+  margin-bottom: $spacing-2xl;
+  display: inline-block;
+  width: 100%;
+  background-color: white;
+  @media only screen and (min-width: $responsive-mid-desktop) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    .section{
+      width: 100%;
+    }
+  }
+}
+
+.-partners-container{
+  padding-bottom: $spacing-2xl;
+  margin-top: calc($spacing-2xl - $title-line-height);
+  display: inline-block;
+  width: 100%;
+  .partners{
+    margin-top: calc($spacing-2xl - $title-line-height) 0;
+    display: inline-block;
+  }
+  @media only screen and (min-width: $responsive-desktop) {
+    margin-top: calc($spacing-2xl - $title-line-height);
+  }
+
+   @media only screen and (min-width: $responsive-mid-desktop) {
+    margin-top: calc($spacing-2xl - $title-line-height);
+    padding-bottom: $spacing-2xl;
+    .partners__title-container{
+      display: inline-block;
+      .separator{
+        padding-right: 50px;
+      }
+    }
+  }
+}

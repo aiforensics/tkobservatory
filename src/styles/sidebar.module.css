@@ -2,7 +2,7 @@
   width: 30vw;
   border: 1px solid;
   border-left: none;
-  height: calc(100vh - 62px);
+  height: calc(100vh - 77px);
   display: flex;
   flex-direction: column;
   overflow: hidden;

@@ -26,7 +26,7 @@ bottom: 40px;
 .mapcontainer{
   border: 1px solid;
   width: 70vw;
-  height: calc(100vh - 62px);
+  height: calc(100vh - 77px);
   overflow: hidden;
   position: relative;
 }
