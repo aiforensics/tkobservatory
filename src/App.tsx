@@ -131,7 +131,7 @@ function App() {
           />
 
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
-          {dataClicked.authorId && <VideoPlayer videoData={dataClicked} />}
+          {dataClicked.authorName && <VideoPlayer videoData={dataClicked} />}
           {(userInteracted || selectedCountry.name !== INITIAL_LOCATION) &&
             !searchResults.searchKey && (
               <ResetButton unclickCountries={clearCountryInfo} />

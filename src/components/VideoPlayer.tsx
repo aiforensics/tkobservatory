@@ -14,9 +14,13 @@ const VideoPlayer = ({ videoData }: Props) => {
     setVideoPlaying(true);
   }, [videoData]);
 
+  const nickName =
+    typeof authorName === "object" ? authorName.nickname : authorName;
+
   const closeIframe = () => {
     setVideoPlaying(false);
   };
+
   if (videoPlaying) {
     return (
       <div className={styles.container}>
@@ -26,7 +30,7 @@ const VideoPlayer = ({ videoData }: Props) => {
 
         <blockquote
           className="tiktok-embed"
-          cite={`https://www.tiktok.com/@${authorName}/video/${videoId}`}
+          cite={`https://www.tiktok.com/@${nickName}/video/${videoId}`}
           data-video-id="videoId"
           style={{ maxWidth: "605px", minWidth: "325px", margin: 0 }}
         >
