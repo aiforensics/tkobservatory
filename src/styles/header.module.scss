@@ -1,0 +1,33 @@
+@import '../styles/colors.scss';
+
+.appHeader{
+  height: 75px;
+  max-height: 75px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto;
+  font-family: 'FKDisplayRegular';
+  padding: 0 40px;
+}
+
+.appHeader h2{
+  position: absolute;
+  color: $color-sunrise;
+  font-family: "FKRasterGroteskSharp";
+  font-size: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.appHeader .readmeLink:hover{
+  text-decoration: underline;
+}
+
+.appHeader .imageLink{
+  margin-right: auto;
+  display: flex;
+}
+.appHeader img{
+  height: 25px;
+}

@@ -5,7 +5,7 @@ import { VIDEOS_REQUESTED } from "./constants";
 function useAPIGetTopByCountry(dates: Date[]) {
   return useApiGet(
     `${
-      process.env.REACT_APP_TOP_COUNRTY_API
+      process.env.REACT_APP_TOP_COUNTRY_API
     }?start=${dates[0].toISOString()}&end=${dates[1].toISOString()}&n=${VIDEOS_REQUESTED}`,
     dates
   );
