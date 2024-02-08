@@ -142,9 +142,9 @@ const MapChart = ({
                           : foundcountriesClickedGlobalFound
                           ? isSearching
                             ? "#308c30"
-                            : "#945cb4"
+                            : "#7A85E9"
                           : isClicked
-                          ? "#ffdd19"
+                          ? "#FBCE54"
                           : "#FFF"
                       }
                       style={{
@@ -152,7 +152,7 @@ const MapChart = ({
                         //   fill: availableCountry ? "#06F" : "#808080",
                         // },
                         hover: {
-                          fill: availableCountry ? "#fdf1ab" : "",
+                          fill: availableCountry ? "#FEF5DD" : "",
                         },
                       }}
                       onMouseEnter={() => {

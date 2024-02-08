@@ -1,4 +1,4 @@
-import styles from "../styles/header.module.css";
+import styles from "../styles/header.module.scss";
 import aiflogo from ".././assets/aif_new_logo_complete.svg";
 import { Link } from "../components/Link/Link";
 

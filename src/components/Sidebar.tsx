@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/sidebar.module.css";
+import styles from "../styles/sidebar.module.scss";
 import SidebarListModule from "./SidebarListModule";
 import {
   GlobalData,

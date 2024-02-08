@@ -3,7 +3,7 @@ import {
   TopByCountryData,
   SearchDataParsed,
 } from "../types/global";
-import styles from "../styles/sidebarListModuleItem.module.css";
+import styles from "../styles/sidebarListModuleItem.module.scss";
 import Accordion from "./Accordion";
 
 interface SidebarListModuleItemProps {
