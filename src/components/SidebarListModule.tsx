@@ -73,7 +73,7 @@ const SidebarListModule = ({
           isSearching ? "No results for your search" : "No results"
         }`}</div>
       )}
-      {resultsShown < 30 && parsedData?.length ? (
+      {resultsShown < 30 && parsedData?.length > 10 ? (
         <button className={styles.showmoreButton} onClick={handleShowMore}>
           show more
         </button>

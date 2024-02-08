@@ -55,11 +55,16 @@ function App() {
     setLoading(globalResults.loading);
   }, [globalResults.loading]);
 
+  const cleanSearchResults = useCallback(() => {
+    setSearchResults({ searchKey: "", data: [], selected: "" });
+    setDataClicked({} as GlobalDataParsed);
+  }, []);
+
   // Clears country + Sidebar when: RESET MAP/NEW COUNTRY/SEARCH is clicked
   const clearCountryInfo = useCallback(() => {
+    cleanSearchResults();
     setSelectedCountry(noCountrySelected);
-    setDataClicked({} as GlobalDataParsed);
-  }, [noCountrySelected]);
+  }, [noCountrySelected, cleanSearchResults]);
 
   useEffect(() => {
     if (searchFocused) {
@@ -74,13 +79,8 @@ function App() {
     setDataClicked(dataClicked);
   };
 
-  const cleanSearchResults = useCallback(() => {
-    setSearchResults({ searchKey: "", data: [], selected: "" });
-    setDataClicked({} as GlobalDataParsed);
-  }, []);
-
   useEffect(() => {
-    if (searchResults.searchKey && selectedCountry.name !== INITIAL_LOCATION) {
+    if (!searchResults.searchKey && selectedCountry.name !== INITIAL_LOCATION) {
       cleanSearchResults();
     }
   }, [selectedCountry, searchResults.searchKey, cleanSearchResults]);

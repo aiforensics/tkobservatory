@@ -30,8 +30,8 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
 
   const listOfCountries = isGlobalDataItem ? (
     <ul>
-      {globalDataItem.countryNames &&
-        globalDataItem.countryNames.map((country) => (
+      {globalDataItem.countries &&
+        globalDataItem.countries.map((country) => (
           <li key={`country-${country}`}>{country}</li>
         ))}
     </ul>
@@ -49,6 +49,7 @@ const SidebarListModuleItem: React.FC<SidebarListModuleItemProps> = (
       ? globalDataItem.authorName.nickname
       : globalDataItem.authorName
     : "no data";
+
   return (
     <div
       className={`${styles.container} ${

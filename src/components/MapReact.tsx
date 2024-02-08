@@ -8,7 +8,6 @@ import {
 } from "react-simple-maps";
 import { geoAugust } from "d3-geo-projection";
 import { PatternLines } from "@visx/pattern";
-import { INITIAL_LOCATION } from "./../constants";
 import MapControls from "./../components/MapControls";
 
 const geoUrl = "/features.json";
@@ -48,7 +47,7 @@ const MapChart = ({
       setCountry("");
     };
 
-    if (countryInfo.name === INITIAL_LOCATION) cleanMap();
+    if (countryInfo.name === undefined) cleanMap();
   }, [countryInfo, initialZoomCoor]);
 
   const countryClicked = (props: any) => {

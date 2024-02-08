@@ -5,3 +5,9 @@
   cursor: pointer;
   margin-bottom: 5px;
 }
+
+.accordion-content ul {
+  columns: 6;
+  -webkit-columns: 6;
+  -moz-columns: 6;
+}
