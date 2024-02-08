@@ -71,7 +71,6 @@ const Search: React.FC<Props> = ({
     //   !e.currentTarget.contains(e.relatedTarget) &&
     //   (!isSearchInProcess || !isSearchKey)
     // ) {
-    //   console.log("primer if");
     //   element.value = "default";
     //   setSelected("");
     //   setIsSearchInProcess(false);
@@ -79,7 +78,6 @@ const Search: React.FC<Props> = ({
     //   handleInputFocus(false);
     // }
     if (!e.currentTarget.contains(e.relatedTarget)) {
-      console.log("segund if");
       handleInputFocus(false);
     }
   };
