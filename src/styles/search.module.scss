@@ -27,16 +27,27 @@ input{
 input:focus{
   outline: none;
 }
-
-select{
-  background: none;
-  border: 1px solid;
-  border-radius: 3px;
-  padding: 5px 10px;
-  text-transform: uppercase;
-  cursor: pointer;
-  height: 30px;
-  width: 140px;
+.selectWrapper{
+  position: relative;
+  select{
+    background: none;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    height: 30px;
+    width: 140px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  &:after {
+    content: "↓";
+    font-size: 1rem;
+    top: 6px;
+    right: 10px;
+    position: absolute;
+  }
 }
 select:has(option:disabled:checked) {
   color: gray;

@@ -1,4 +1,4 @@
-import styles from "../styles/search.module.css";
+import styles from "../styles/search.module.scss";
 import React, {
   useRef,
   useState,
@@ -65,19 +65,21 @@ const Search: React.FC<Props> = ({
     setSelected(value);
   };
 
-  let element = document.getElementById("searchSelect") as HTMLSelectElement;
+  // let element = document.getElementById("searchSelect") as HTMLSelectElement;
   const handleBlur = (e: any) => {
-    if (
-      !e.currentTarget.contains(e.relatedTarget) &&
-      (!isSearchInProcess || !isSearchKey)
-    ) {
-      element.value = "default";
-      setSelected("");
-      setIsSearchInProcess(false);
-      if (data === undefined || !isSearchKey) setVal("");
-      handleInputFocus(false);
-    }
+    // if (
+    //   !e.currentTarget.contains(e.relatedTarget) &&
+    //   (!isSearchInProcess || !isSearchKey)
+    // ) {
+    //   console.log("primer if");
+    //   element.value = "default";
+    //   setSelected("");
+    //   setIsSearchInProcess(false);
+    //   if (data === undefined || !isSearchKey) setVal("");
+    //   handleInputFocus(false);
+    // }
     if (!e.currentTarget.contains(e.relatedTarget)) {
+      console.log("segund if");
       handleInputFocus(false);
     }
   };
@@ -111,20 +113,22 @@ const Search: React.FC<Props> = ({
         onBlur={handleBlur}
       >
         <div className={styles.searchMainContainer}>
-          <select
-            name="searchSelect"
-            id="searchSelect"
-            onChange={(e) => handleSelect(e)}
-            defaultValue={"default"}
-          >
-            <option disabled value="default">
-              SEARCH IN
-            </option>
-            <option value="authorName">authorName</option>
-            <option value="description">description</option>
-            <option value="musicAuthor">musicAuthor</option>
-            <option value="musicTitle">musicTitle</option>
-          </select>
+          <div className={styles.selectWrapper}>
+            <select
+              name="searchSelect"
+              id="searchSelect"
+              onChange={(e) => handleSelect(e)}
+              defaultValue={"default"}
+            >
+              <option disabled value="default">
+                SEARCH IN
+              </option>
+              <option value="authorName">authorName</option>
+              <option value="description">description</option>
+              <option value="musicAuthor">musicAuthor</option>
+              <option value="musicTitle">musicTitle</option>
+            </select>
+          </div>
           {/* <i className={"icon-search"} /> */}
           <div className={styles.searchDeleteContainer}>
             <input
