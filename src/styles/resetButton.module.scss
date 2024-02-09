@@ -1,3 +1,4 @@
+@import '../styles/colors.scss';
 .resetButton{
   position: absolute;
   left: 50%;
@@ -6,13 +7,15 @@
 }
 
 .resetButton button{
-    background: white;
+    background: $color-dark;
+    color: white;
     border: 1px solid;
-    border-radius: 3px;
-    padding: 5px 10px;
+    padding: 5px 20px;
     text-transform: uppercase;
     cursor: pointer;
     transition: all .1s;
+    font-family: 'spaceMono';
+    font-size: 15px;
 }
 
 .resetButton button:hover{

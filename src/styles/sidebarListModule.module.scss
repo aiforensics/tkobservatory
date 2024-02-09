@@ -1,3 +1,4 @@
+@import '../styles/colors.scss';
 .container{
   position: relative;
 }
@@ -17,13 +18,15 @@
   border-radius: 3px;
 }
 .showmoreButton{
-  background: none;
+  margin-bottom: 20px;
+  background: $color-dark;
+  color: white;
   border: 1px solid;
-  border-radius: 3px;
-  padding: 5px 10px;
+  padding: 5px 20px;
   text-transform: uppercase;
   cursor: pointer;
-  margin-bottom: 20px;
+  font-family: 'spaceMono';
+  font-size: 15px;
 }
 
 .noresults{

@@ -126,7 +126,9 @@ const SideBar: React.FC<SidebarProps> = ({
             isSearching={!!searchResults.searchKey}
           />
         ) : (
-          "Retrieving data, one moment please..."
+          <span className={styles.loader}>
+            Retrieving data, one moment please...
+          </span>
         )}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import styles from "../styles/resetButton.module.css";
+import styles from "../styles/resetButton.module.scss";
 
 const ResetButton = ({ unclickCountries }: any) => {
   return (

@@ -5,7 +5,7 @@ import {
   TopByCountryData,
   SearchDataParsed,
 } from "../types/global";
-import styles from "../styles/sidebarListModule.module.css";
+import styles from "../styles/sidebarListModule.module.scss";
 
 type SidebarListModuleProps = {
   parsedData: GlobalDataParsed[] | TopByCountryData[] | SearchDataParsed[];

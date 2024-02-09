@@ -1,11 +1,12 @@
+@import '../styles/colors.scss';
+
 .searchParentContainer{
   position: relative;
 }
 .searchContainer{
   display: flex;
   padding: 10px;
-  border: 1px solid grey;
-  border-radius: 3px;
+  border: 1px solid $color-body;
   align-items: center;
   position: relative;
 }
@@ -30,24 +31,31 @@ input:focus{
 .selectWrapper{
   position: relative;
   select{
-    background: none;
     border: 1px solid;
-    border-radius: 3px;
-    padding: 5px 10px;
-    text-transform: uppercase;
-    cursor: pointer;
     height: 30px;
     width: 140px;
     -webkit-appearance: none;
     appearance: none;
+    padding: 0px 15px 1px 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .1s;
+    font-family: 'spaceMono';
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    cursor: default;
+    background-color: inherit;
+    border: 1px solid #b7b7b7;
+    color: #b7b7b7;
   }
-  &:after {
-    content: "↓";
-    font-size: 1rem;
-    top: 6px;
-    right: 10px;
-    position: absolute;
-  }
+  // &:after {
+  //   content: "↓";
+  //   font-size: 1rem;
+  //   top: 6px;
+  //   right: 10px;
+  //   position: absolute;
+  // }
 }
 // select:has(option:disabled:checked) {
 //   color: gray;
@@ -81,14 +89,18 @@ select:focus{
 .searchButton{
   margin-left: 10px;
   cursor: pointer;
-  border: 1px solid #308c30;
-  color: #308c30;
-  border-radius: 3px;
-  padding: 5px 10px;
+  border: 1px solid $color-dark;
+  background-color: $color-dark;
+  color: white;
+  padding: 0px 15px 1px 15px;
   text-transform: uppercase;
   cursor: pointer;
-  background-color: #308c30;
+  transition: all .1s;
+  font-family: 'spaceMono';
+  font-size: 15px;
   color: white;
+  text-align: center;
+  height: 30px;
 }
 
 button[disabled]{
@@ -110,9 +122,20 @@ button[disabled]{
 }
 
 .focus{
-  border-color: #308c30;
-  box-shadow: 0px 0px 0px 1px #308c30;
   box-sizing: border-box;
+  .selectWrapper{
+    position: relative;
+    select{
+      background: white;
+      color: $color-sunset;
+      border: 1px solid;
+      border: 1px solid $color-sunset;
+      cursor: pointer;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
 }
 
 .cleanSearch{
@@ -123,13 +146,17 @@ button[disabled]{
 }
 
 .cleanSearch button{
-  margin-left: 0;
+  margin-left: 10px;
   background: none;
   border: 1px solid;
-  border-radius: 3px;
-  padding: 5px 10px;
   text-transform: uppercase;
   cursor: pointer;
   border-color: red;
-  color: red;
+  background-color: red;
+  color: white;
+  font-family: 'spaceMono';
+  padding: 0px 15px 1px 15px;
+  height: 30px;
+  width: 140px;
+  font-size: 14px;
 }

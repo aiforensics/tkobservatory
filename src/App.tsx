@@ -15,7 +15,7 @@ import {
   searchResults,
   clickedCountryType,
 } from "./types/global";
-import { INITIAL_LOCATION, INITIAL_DATES } from "./constants";
+import { INITIAL_DATES } from "./constants";
 import {
   useAPIGetTopByCountry,
   useAPIGetGlobalRecommendations,
@@ -80,7 +80,7 @@ function App() {
   };
 
   useEffect(() => {
-    if (!searchResults.searchKey && selectedCountry.name !== INITIAL_LOCATION) {
+    if (!searchResults.searchKey && selectedCountry.name !== undefined) {
       cleanSearchResults();
     }
   }, [selectedCountry, searchResults.searchKey, cleanSearchResults]);
@@ -132,7 +132,7 @@ function App() {
 
           <Tooltip anchorSelect="#my-anchor-element" content={content} />
           {dataClicked.authorName && <VideoPlayer videoData={dataClicked} />}
-          {(userInteracted || selectedCountry.name !== INITIAL_LOCATION) &&
+          {(userInteracted || selectedCountry.name !== undefined) &&
             !searchResults.searchKey && (
               <ResetButton unclickCountries={clearCountryInfo} />
             )}

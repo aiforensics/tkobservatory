@@ -42,4 +42,21 @@
   max-height: 80%;
   overflow: scroll;
   margin-bottom: 20px;
+  position: relative;
+}
+
+.loader{
+  color: $color-sunrise;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  animation: pulsating 2s infinite;
+}
+
+@keyframes pulsating {
+  0% {opacity: 0;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
 }
