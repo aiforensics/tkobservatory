@@ -25,7 +25,7 @@ const Search: React.FC<Props> = ({
   isSearchKey,
 }) => {
   const [val, setVal] = useState("");
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState("description");
   const [searchKey, setSearchKey] = useState("");
   const [isSearchInProcess, setIsSearchInProcess] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -41,7 +41,7 @@ const Search: React.FC<Props> = ({
   const submitHandler = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      setSearchKey(encodeURIComponent(inputRef.current?.value!));
+      setSearchKey(encodeURIComponent(inputRef.current?.value as string));
       setIsSearchInProcess(true);
       execute();
     },
@@ -85,11 +85,11 @@ const Search: React.FC<Props> = ({
   // Cleans the search input and data
   const handleCleanSearchData = useCallback(() => {
     let element = document.getElementById("searchSelect") as HTMLSelectElement;
-    element.value = "default";
+    element.value = "description";
     setIsSearchInProcess(false);
     handleInputFocus(false);
     setSearchKey("");
-    setSelected("");
+    setSelected("description");
     setVal("");
     handleCleanSearch();
   }, [handleCleanSearch, handleInputFocus]);
@@ -116,13 +116,9 @@ const Search: React.FC<Props> = ({
               name="searchSelect"
               id="searchSelect"
               onChange={(e) => handleSelect(e)}
-              defaultValue={"default"}
             >
-              <option disabled value="default">
-                SEARCH IN
-              </option>
-              <option value="authorName">authorName</option>
               <option value="description">description</option>
+              <option value="authorName">authorName</option>
               <option value="musicAuthor">musicAuthor</option>
               <option value="musicTitle">musicTitle</option>
             </select>
@@ -148,7 +144,7 @@ const Search: React.FC<Props> = ({
         <button
           className={styles.searchButton}
           type="submit"
-          disabled={val === "" || selected === ""}
+          disabled={val === ""}
         >
           SEARCH
         </button>

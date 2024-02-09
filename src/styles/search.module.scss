@@ -49,9 +49,9 @@ input:focus{
     position: absolute;
   }
 }
-select:has(option:disabled:checked) {
-  color: gray;
-}
+// select:has(option:disabled:checked) {
+//   color: gray;
+// }
 
 select:focus{
   border: none;
