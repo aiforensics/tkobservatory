@@ -19,7 +19,7 @@ const Accordion = ({ title, content, customClass }: Props) => {
         <div>{title}</div>
         <div>{isActive ? "-" : "+"}</div>
       </div>
-      {isActive && <div className="accordion-content">{content}</div>}
+      {isActive && <div className={styles.accordionContent}>{content}</div>}
     </div>
   );
 };

@@ -6,7 +6,7 @@
   margin-bottom: 5px;
 }
 
-.accordion-content ul {
+.accordionContent ul {
   columns: 6;
   -webkit-columns: 6;
   -moz-columns: 6;
